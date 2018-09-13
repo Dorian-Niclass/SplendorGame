@@ -264,6 +264,116 @@ namespace Splendor
         }
 
         /// <summary>
+        /// click on the red coin (rubis) to tell the player has unselected this coin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblChoiceRubis_Click(object sender, EventArgs e)
+        {
+            if (enableClicLabel)
+            {
+                cmdValidateChoice.Visible = true;
+                lblChoiceRubis.Visible = true;
+                //TO DO check if possible to choose a coin, update the number of available coin
+                nbRubis--;
+                lblChoiceRubis.Text = nbRubis + "\r\n";
+
+                if (nbRubis == 0)
+                {
+                    lblChoiceRubis.Text = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// click on the blue coin (saphir) to tell the player has unselected this coin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblChoiceSaphir_Click(object sender, EventArgs e)
+        {
+            if (enableClicLabel)
+            {
+                cmdValidateChoice.Visible = true;
+                lblChoiceSaphir.Visible = true;
+                //TO DO check if possible to choose a coin, update the number of available coin
+                nbSaphir--;
+                lblChoiceSaphir.Text = nbSaphir + "\r\n";
+
+                if (nbSaphir == 0)
+                {
+                    lblChoiceSaphir.Text = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// click on the black coin (onyx) to tell the player has unselected this coin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblChoiceOnyx_Click(object sender, EventArgs e)
+        {
+            if (enableClicLabel)
+            {
+                cmdValidateChoice.Visible = true;
+                lblChoiceOnyx.Visible = true;
+                //TO DO check if possible to choose a coin, update the number of available coin
+                nbOnyx--;
+                lblChoiceOnyx.Text = nbOnyx + "\r\n";
+
+                if (nbOnyx == 0)
+                {
+                    lblChoiceOnyx.Text = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// click on the green coin (emeraude) to tell the player has unselected this coin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblChoiceEmeraude_Click(object sender, EventArgs e)
+        {
+            if (enableClicLabel)
+            {
+                cmdValidateChoice.Visible = true;
+                lblChoiceEmeraude.Visible = true;
+                //TO DO check if possible to choose a coin, update the number of available coin
+                nbEmeraude--;
+                lblChoiceEmeraude.Text = nbEmeraude + "\r\n";
+
+                if (nbEmeraude == 0)
+                {
+                    lblChoiceEmeraude.Text = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// click on the white coin (diamand) to tell the player has unselected this coin
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblChoiceDiamand_Click(object sender, EventArgs e)
+        {
+            if (enableClicLabel)
+            {
+                cmdValidateChoice.Visible = true;
+                lblChoiceDiamand.Visible = true;
+                //TO DO check if possible to choose a coin, update the number of available coin
+                nbDiamand--;
+                lblChoiceDiamand.Text = nbDiamand + "\r\n";
+
+                if (nbDiamand == 0)
+                {
+                    lblChoiceDiamand.Text = null;
+                }
+            }
+        }
+
+        /// <summary>
         /// click on the validate button to approve the selection of coins or card
         /// </summary>
         /// <param name="sender"></param>
