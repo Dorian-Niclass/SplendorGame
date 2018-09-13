@@ -281,6 +281,11 @@ namespace Splendor
                 if (nbRubis == 0)
                 {
                     lblChoiceRubis.Text = null;
+
+                    if (nbSaphir == 0 && nbOnyx == 0 && nbEmeraude == 0 && nbDiamand == 0)  
+                    {
+                        cmdValidateChoice.Visible = false;
+                    }
                 }
             }
         }
@@ -303,6 +308,11 @@ namespace Splendor
                 if (nbSaphir == 0)
                 {
                     lblChoiceSaphir.Text = null;
+
+                    if (nbRubis == 0 && nbOnyx == 0 && nbEmeraude == 0 && nbDiamand == 0)
+                    {
+                        cmdValidateChoice.Visible = false;
+                    }
                 }
             }
         }
@@ -325,6 +335,11 @@ namespace Splendor
                 if (nbOnyx == 0)
                 {
                     lblChoiceOnyx.Text = null;
+
+                    if (nbRubis == 0 && nbSaphir == 0 && nbEmeraude == 0 && nbDiamand == 0)
+                    {
+                        cmdValidateChoice.Visible = false;
+                    }
                 }
             }
         }
@@ -347,6 +362,11 @@ namespace Splendor
                 if (nbEmeraude == 0)
                 {
                     lblChoiceEmeraude.Text = null;
+
+                    if (nbRubis == 0 && nbSaphir == 0 && nbOnyx == 0 && nbDiamand == 0)
+                    {
+                        cmdValidateChoice.Visible = false;
+                    }
                 }
             }
         }
@@ -369,6 +389,11 @@ namespace Splendor
                 if (nbDiamand == 0)
                 {
                     lblChoiceDiamand.Text = null;
+
+                    if (nbRubis == 0 && nbSaphir == 0 && nbOnyx == 0 && nbEmeraude == 0)
+                    {
+                        cmdValidateChoice.Visible = false;
+                    }
                 }
             }
         }
