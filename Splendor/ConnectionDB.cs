@@ -54,27 +54,40 @@ namespace Splendor
         /// <returns>cards stack</returns>
         public Stack<Card> GetListCardAccordingToLevel(int level)
         {
-            //Get all the data from card table selecting them according to the data
-            //TO DO
-            //Create an object "Stack of Card"
-            Stack<Card> listCard = new Stack<Card>();
-            //do while to go to every record of the card table
-            //while (....)
-            //{
-                //Get the ressourceid and the number of prestige points
-                //Create a card object
-                
-                //select the cost of the card : look at the cost table (and other)
-                
-                //do while to go to every record of the card table
-                //while (....)
-                //{
-                    //get the nbRessource of the cost
-                //}
-                //push card into the stack
-                
-            //}
-            return listCard;
+            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=Splendor.sqlite;Version=3;");
+            m_dbConnection.Open();
+
+            string sql = "SELECT * FROM Cards WHERE level = "+level;
+
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            Stack<Card> cards = new Stack<Card>();
+            while (reader.Read() != false)
+            {
+                int cardID = reader.GetInt32(0);
+                Ressources ressource = (Ressources)Enum.GetValues(typeof(Ressources)).GetValue(reader.GetInt32(1)-1);
+                int cardLevel = reader.GetInt32(2);
+                int prestige = reader.GetInt32(3);
+                Dictionary<Ressources, int> cost = new Dictionary<Ressources, int>();
+
+                sql = "SELECT * FROM CardCost WHERE fkCard = " + cardID;
+                command = new SQLiteCommand(sql, m_dbConnection);
+                SQLiteDataReader costReader = command.ExecuteReader();
+
+                while (costReader.Read() != false)
+                {
+                    Ressources costRessource = (Ressources)Enum.GetValues(typeof(Ressources)).GetValue(costReader.GetInt32(2));
+                    int nb = costReader.GetInt32(3);
+
+                    cost.Add(costRessource, nb);
+                }
+
+                Card card = new Card(cardLevel, ressource, prestige, cost);
+                cards.Push(card);
+            }
+
+            return cards;
         }
 
 

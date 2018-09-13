@@ -33,6 +33,5 @@ namespace Splendor
         /// </summary>
         public int Id { get; set; }
 
-
     }
 }

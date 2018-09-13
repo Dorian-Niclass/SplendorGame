@@ -41,6 +41,10 @@ namespace Splendor
         //connection to the database
         private ConnectionDB conn;
 
+        private Stack<Card> level1Cards = new Stack<Card>();
+        private Stack<Card> level2Cards = new Stack<Card>();
+        private Stack<Card> level3Cards = new Stack<Card>();
+
         /// <summary>
         /// constructor
         /// </summary>
@@ -70,29 +74,17 @@ namespace Splendor
             //they are not hard coded any more
             //TO DO
 
-            Card card11 = new Card();
-            card11.Level = 1;
-            card11.PrestigePt = 1;
-            card11.Cost = new List<Ressources>()
-            {
-                Ressources.Diamand,
-                Ressources.Diamand
-            };
-            card11.Ress = Ressources.Rubis;
+            level1Cards = conn.GetListCardAccordingToLevel(1);
+            level2Cards = conn.GetListCardAccordingToLevel(2);
+            level3Cards = conn.GetListCardAccordingToLevel(3);
 
-            Card card12 = new Card();
-            card12.Level = 1;
-            card12.PrestigePt = 0;
-            card12.Cost = new List<Ressources>()
-            {
-                Ressources.Rubis,
-                Ressources.Onyx,
-                Ressources.Emeraude
-            };
-            card12.Ress = Ressources.Saphir;
+            level1Cards = Shuffle<Card>(level1Cards);
+            level2Cards = Shuffle<Card>(level2Cards);
+            level3Cards = Shuffle<Card>(level3Cards);
 
-            txtLevel11.Text = card11.ToString();
-            txtLevel12.Text = card12.ToString();
+            txtLevel11.Text = level1Cards.Pop().ToString();
+            txtLevel21.Text = level2Cards.Pop().ToString();
+            txtLevel31.Text = level3Cards.Pop().ToString();
 
             //load cards from the database
             Stack<Card> listCardOne = conn.GetListCardAccordingToLevel(1);
@@ -117,6 +109,12 @@ namespace Splendor
             //we wire the click on all cards to the same event
             //TO DO for all cards
             txtLevel11.Click += ClickOnCard;
+        }
+
+        private Stack<T> Shuffle<T>(Stack<T> stack)
+        {
+            Random rnd = new Random();
+            return new Stack<T>(stack.OrderBy(x => rnd.Next()));
         }
 
         private void ClickOnCard(object sender, EventArgs e)

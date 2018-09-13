@@ -31,7 +31,20 @@ namespace Splendor
         /// all the precious stones that are needed to buy the card
         /// </summary>
         //public int[] Cout { get; set; } = new int[4]; //tableau : l'index correspond à l'énumération, la valeur à la ressource requise
-        public List<Ressources> Cost { get; set; } = new List<Ressources>();
+        public Dictionary<Ressources, int> Cost { get; set; } = new Dictionary<Ressources, int>();
+
+        public Card()
+        {
+
+        }
+
+        public Card(int level, Ressources ressource, int prestige, Dictionary<Ressources, int> cost)
+        {
+            this.Level = level;
+            this.Ress = ressource;
+            this.PrestigePt = prestige;
+            this.Cost = cost;
+        }
 
         /// <summary>
         /// displays information about the card
@@ -53,16 +66,16 @@ namespace Splendor
             res += "\r\n\r\n";
             int boucle = 0;
             
-            foreach (int i in Cost)
+            foreach (Ressources ress in Cost.Keys)
             {
                 
                 string ressource = "";
 
-                if (i != 0)
+                if (Cost[ress] != 0)
                 {
                     ressource = "    ";
-                    ressource += Enum.GetName(typeof(Ressources), boucle) + " ";
-                    ressource += i + "\r\n";
+                    ressource += ress.ToString() + " ";
+                    ressource += Cost[ress] + "\r\n";
                 }
                 
                 res += ressource;
