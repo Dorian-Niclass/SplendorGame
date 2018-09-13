@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.IO;
 
 namespace Splendor
 {
@@ -21,22 +22,31 @@ namespace Splendor
         /// </summary>
         public ConnectionDB()
         {
-
-            SQLiteConnection.CreateFile("Splendor.sqlite");
-            
-            m_dbConnection = new SQLiteConnection("Data Source=Splendor.sqlite;Version=3;");
-            m_dbConnection.Open();
-
-            //create and insert players
-            CreateInsertPlayer();
-            //Create and insert cards
-            //TO DO
-            CreateInsertCards();
-            //Create and insert ressources
-            //TO DO
-            CreateInsertRessources();
+            LoadDB();
         }
 
+        /// <summary>
+        /// Create and insert data in the SQLite DB
+        /// </summary>
+        public void LoadDB()
+        {
+            if (!File.Exists("Splendor.sqlite"))
+            {
+                SQLiteConnection.CreateFile("Splendor.sqlite");
+
+                m_dbConnection = new SQLiteConnection("Data Source=Splendor.sqlite;Version=3;");
+                m_dbConnection.Open();
+                 
+                //create and insert players
+                CreateInsertPlayer();
+                //Create and insert cards
+                //TO DO
+                CreateInsertCards();
+                //Create and insert ressources
+                //TO DO
+                CreateInsertRessources();
+            }
+        }
 
         /// <summary>
         /// get the list of cards according to the level
@@ -112,7 +122,30 @@ namespace Splendor
         /// </summary>
         private void CreateInsertRessources()
         {
-            //TO DO
+            string sql = "CREATE TABLE Ressources (idRessource INTEGER PRIMARY KEY, name VARCHAR(45))";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "INSERT INTO Ressources VALUES(0, 'Rubis')";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "INSERT INTO Ressources VALUES(1, 'Emeraude')";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "INSERT INTO Ressources VALUES(2, 'Onyx')";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "INSERT INTO Ressources VALUES(3, 'Saphir')";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "INSERT INTO Ressources VALUES(4, 'Diamant')";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
         }
 
         /// <summary>
@@ -120,7 +153,64 @@ namespace Splendor
         /// </summary>
         private void CreateInsertCards()
         {
-           //TO DO
+            string sql = "CREATE TABLE CardCost (idCost INTEGER PRIMARY KEY Autoincrement, fkCard INT, fkRessource INT, nbRessource INT)";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "CREATE TABLE Cards (idCard INTEGER PRIMARY KEY Autoincrement, fkRessource INT, level INT, nbPtPrestige INT)";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            using (var reader = new StreamReader(@".\Splendor_Cartes.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(';');
+
+                    int level = values[0] == "" ? 0 : Int32.Parse(values[0]);
+                    int ress = values[1] == "" ? 0 : Int32.Parse(values[1]);
+                    int prestige = values[2] == "" ? 0 : Int32.Parse(values[2]);
+                    int rubis = values[3] == "" ? 0 : Int32.Parse(values[3]);
+                    int emeraude = values[4] == "" ? 0 : Int32.Parse(values[4]);
+                    int onyx = values[5] == "" ? 0 : Int32.Parse(values[5]);
+                    int saphir = values[6] == "" ? 0 : Int32.Parse(values[6]);
+                    int diamant = values[7] == "" ? 0 : Int32.Parse(values[7]);
+
+                    int[] cost = { rubis, emeraude, onyx, saphir, diamant };
+
+                    AddCard(ress, level, prestige, cost);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Add a card in the database with specific values
+        /// </summary>
+        /// <param name="ressource"></param>
+        /// <param name="level"></param>
+        /// <param name="prestige"></param>
+        /// <param name="cost"></param>
+        private void AddCard(int ressource, int level, int prestige, int[] cost)
+        {
+            string sql = "INSERT INTO Cards VALUES(NULL, "+ressource+", "+level+", "+prestige+")";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+            sql = "SELECT last_insert_rowid() AS id";
+            command = new SQLiteCommand(sql, m_dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            reader.Read();
+            int id = reader.GetInt32(0);
+
+            for(int i = 0; i<cost.Count(); i++)
+            {
+                sql = "INSERT INTO CardCost VALUES(NULL, " + id + ", " + i + ", "+cost[i]+")";
+                command = new SQLiteCommand(sql, m_dbConnection);
+                command.ExecuteNonQuery();
+            }
+           
         }
 
     }

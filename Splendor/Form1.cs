@@ -73,13 +73,22 @@ namespace Splendor
             Card card11 = new Card();
             card11.Level = 1;
             card11.PrestigePt = 1;
-            card11.Cout = new int[] { 1, 0, 2, 0, 2 };
+            card11.Cost = new List<Ressources>()
+            {
+                Ressources.Diamand,
+                Ressources.Diamand
+            };
             card11.Ress = Ressources.Rubis;
 
             Card card12 = new Card();
             card12.Level = 1;
             card12.PrestigePt = 0;
-            card12.Cout = new int[] { 0, 1, 2, 1, 0 };
+            card12.Cost = new List<Ressources>()
+            {
+                Ressources.Rubis,
+                Ressources.Onyx,
+                Ressources.Emeraude
+            };
             card12.Ress = Ressources.Saphir;
 
             txtLevel11.Text = card11.ToString();

@@ -11,73 +11,27 @@ namespace Splendor
     /// </summary>
     class Card
     {
-        private Ressources ress;
-        private int prestigePt;
-        private int level;
-        //tableau : l'index correspond à l'énumération, la valeur à la ressource requise
-        private int[] cout = new int[4];
 
         /// <summary>
         /// the precious stone that the card gives
         /// </summary>
-        public Ressources Ress
-        {
-            get
-            {
-                return ress;
-            }
-            set
-            {
-                ress = value;
-            }
-
-        }
+        public Ressources Ress { get; set; }
 
         /// <summary>
         /// number of prestige point of the card
         /// </summary>
-        public int PrestigePt
-        {
-            get
-            {
-                return prestigePt;
-            }
-            set
-            {
-                prestigePt = value;
-            }
-
-        }
+        public int PrestigePt { get; set; }
 
         /// <summary>
         /// level of the card : 1, 2 or 3
         /// </summary>
-        public int Level
-        {
-            get
-            {
-                return level;
-            }
-            set
-            {
-                level = value;
-            }
-        }
+        public int Level { get; set; }
 
         /// <summary>
         /// all the precious stones that are needed to buy the card
         /// </summary>
-        public int[] Cout
-        {
-            get
-            {
-                return cout;
-            }
-            set
-            {
-                cout = value;
-            }
-        }
+        //public int[] Cout { get; set; } = new int[4]; //tableau : l'index correspond à l'énumération, la valeur à la ressource requise
+        public List<Ressources> Cost { get; set; } = new List<Ressources>();
 
         /// <summary>
         /// displays information about the card
@@ -91,15 +45,15 @@ namespace Splendor
             //Be careful, those \t enables to split the string when clicking on a card
             res += "\t";
 
-            if (prestigePt != 0)
+            if (PrestigePt != 0)
             {
-                res += prestigePt;
+                res += PrestigePt;
             }
             res += "\t";
             res += "\r\n\r\n";
             int boucle = 0;
             
-            foreach (int i in cout)
+            foreach (int i in Cost)
             {
                 
                 string ressource = "";
@@ -117,9 +71,6 @@ namespace Splendor
             }
             return res;
         }
-
-
-
 
     }
 }

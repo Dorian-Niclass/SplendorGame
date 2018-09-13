@@ -12,70 +12,26 @@ namespace Splendor
     /// </summary>
     class Player
     {
-        private string name;
-        private int id;
-        private int[] ressources;
-        private int[] coins;
 
         /// <summary>
         /// name of the player
         /// </summary>
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
+        public string Name { get; set; }
 
         /// <summary>
         /// all the precious stones he has
         /// </summary>
-        public int[] Ressources
-        {
-            get
-            {
-                return ressources;
-            }
-            set
-            {
-                ressources = value;
-            }
-        }
+        public int[] Ressources { get; set; }
 
         /// <summary>
         /// all the coins he has
         /// </summary>
-        public int[] Coins
-        {
-            get
-            {
-                return coins;
-            }
-            set
-            {
-                coins = value;
-            }
-        }
+        public int[] Coins { get; set; }
 
         /// <summary>
         /// id of the player
         /// </summary>
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-            }
-        }
+        public int Id { get; set; }
 
 
     }
