@@ -202,7 +202,14 @@ namespace Splendor
         /// <param name="e"></param>
         private void lblSaphirCoin_Click(object sender, EventArgs e)
         {
-            
+            if (enableClicLabel)
+            {
+                cmdValidateChoice.Visible = true;
+                lblChoiceSaphir.Visible = true;
+                //TO DO check if possible to choose a coin, update the number of available coin
+                nbSaphir++;
+                lblChoiceSaphir.Text = nbSaphir + "\r\n";
+            }
         }
 
         /// <summary>
@@ -212,7 +219,14 @@ namespace Splendor
         /// <param name="e"></param>
         private void lblOnyxCoin_Click(object sender, EventArgs e)
         {
-            
+            if (enableClicLabel)
+            {
+                cmdValidateChoice.Visible = true;
+                lblChoiceOnyx.Visible = true;
+                //TO DO check if possible to choose a coin, update the number of available coin
+                nbOnyx++;
+                lblChoiceOnyx.Text = nbOnyx + "\r\n";
+            }
         }
 
         /// <summary>
@@ -222,8 +236,14 @@ namespace Splendor
         /// <param name="e"></param>
         private void lblEmeraudeCoin_Click(object sender, EventArgs e)
         {
-
-            
+            if (enableClicLabel)
+            {
+                cmdValidateChoice.Visible = true;
+                lblChoiceEmeraude.Visible = true;
+                //TO DO check if possible to choose a coin, update the number of available coin
+                nbEmeraude++;
+                lblChoiceEmeraude.Text = nbEmeraude + "\r\n";
+            }
         }
 
         /// <summary>
@@ -233,7 +253,14 @@ namespace Splendor
         /// <param name="e"></param>
         private void lblDiamandCoin_Click(object sender, EventArgs e)
         {
-            
+            if (enableClicLabel)
+            {
+                cmdValidateChoice.Visible = true;
+                lblChoiceDiamand.Visible = true;
+                //TO DO check if possible to choose a coin, update the number of available coin
+                nbDiamand++;
+                lblChoiceDiamand.Text = nbDiamand + "\r\n";
+            }
         }
 
         /// <summary>
