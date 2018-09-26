@@ -66,7 +66,7 @@ namespace Splendor
             while (reader.Read() != false)
             {
                 int cardID = reader.GetInt32(0);
-                Ressources ressource = (Ressources)Enum.GetValues(typeof(Ressources)).GetValue(reader.GetInt32(1)-1);
+                Ressources ressource = (Ressources)Enum.GetValues(typeof(Ressources)).GetValue(reader.GetInt32(1));
                 int cardLevel = reader.GetInt32(2);
                 int prestige = reader.GetInt32(3);
                 Dictionary<Ressources, int> cost = new Dictionary<Ressources, int>();

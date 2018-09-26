@@ -44,6 +44,9 @@ namespace Splendor
         private Stack<Card> level1Cards = new Stack<Card>();
         private Stack<Card> level2Cards = new Stack<Card>();
         private Stack<Card> level3Cards = new Stack<Card>();
+        private Stack<Card> level4Cards = new Stack<Card>();
+
+        private Card[,] cardsOnTable = new Card[4, 4];
 
         /// <summary>
         /// constructor
@@ -60,6 +63,14 @@ namespace Splendor
         /// <param name="e"></param>
         private void frmSplendor_Load(object sender, EventArgs e)
         {
+            for (int i = 0; i < cardsOnTable.Rank; i++)
+            {
+                for (int j = 0; j < cardsOnTable.GetLength(i); j++)
+                {
+                    cardsOnTable[i, j] = null;
+                }
+            }
+
             lblGoldCoin.Text = "5";
 
             lblDiamandCoin.Text = "7";
@@ -77,14 +88,18 @@ namespace Splendor
             level1Cards = conn.GetListCardAccordingToLevel(1);
             level2Cards = conn.GetListCardAccordingToLevel(2);
             level3Cards = conn.GetListCardAccordingToLevel(3);
+            level4Cards = conn.GetListCardAccordingToLevel(4);
 
             level1Cards = Shuffle<Card>(level1Cards);
             level2Cards = Shuffle<Card>(level2Cards);
             level3Cards = Shuffle<Card>(level3Cards);
+            level4Cards = Shuffle<Card>(level3Cards);
 
-            txtLevel11.Text = level1Cards.Pop().ToString();
-            txtLevel21.Text = level2Cards.Pop().ToString();
-            txtLevel31.Text = level3Cards.Pop().ToString();
+            /*cardsOnTable[1,1] = level1Cards.Pop();
+            cardsOnTable[2,1] = level2Cards.Pop();
+            cardsOnTable[3,1] = level3Cards.Pop();*/
+
+            PickCards();
 
             //load cards from the database
             Stack<Card> listCardOne = conn.GetListCardAccordingToLevel(1);
@@ -108,7 +123,7 @@ namespace Splendor
 
             //we wire the click on all cards to the same event
             //TO DO for all cards
-            txtLevel11.Click += ClickOnCard;
+            txtLevel13.Click += ClickOnCard;
         }
 
         private Stack<T> Shuffle<T>(Stack<T> stack)
@@ -183,6 +198,38 @@ namespace Splendor
             lblPlayer.Text = "Jeu de " + name;
 
             cmdPlay.Enabled = false;
+        }
+
+        /// <summary>
+        /// Pick a new card from the stack for every missing cards on the table
+        /// </summary>
+        private void PickCards()
+        {
+            for (int i = 0; i < cardsOnTable.GetLength(0); i++)
+            {
+                for (int j = 0; j < cardsOnTable.GetLength(1); j++)
+                {
+                    if(cardsOnTable[i,j] == null)
+                    {
+                        try
+                        {
+                            switch (i)
+                            {
+                                case 0: cardsOnTable[i, j] = level1Cards.Pop(); break;
+                                case 1: cardsOnTable[i, j] = level2Cards.Pop(); break;
+                                case 2: cardsOnTable[i, j] = level3Cards.Pop(); break;
+                                case 3: cardsOnTable[i, j] = level4Cards.Pop(); break;
+                            }
+                        }
+                        catch (InvalidOperationException exc)
+                        {
+                            cardsOnTable[i, j] = null;
+                        }
+                    }
+                }
+            }
+
+            DrawCards();
         }
 
         /// <summary>
@@ -278,6 +325,47 @@ namespace Splendor
             //Reload the data of the player
             //We are not allowed to click on the next button
             
+        }
+
+        /// <summary>
+        /// Everytime the form is paint
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmSplendor_Paint(object sender, PaintEventArgs e)
+        {
+            DrawCards();
+        }
+
+        private void DrawCards()
+        {
+            //Check all the text box for the cards if there is a card associated, if so, print the card properties inside
+            foreach (Control control in this.Controls.OfType<FlowLayoutPanel>())
+            {
+                foreach (Control cardText in control.Controls.OfType<TextBox>())
+                {
+                    try
+                    {
+                        int col = Int32.Parse(cardText.Name.Substring(cardText.Name.Length - 1, 1));
+                        int row = 0;
+
+                        if (cardText.Name.Contains("Noble"))
+                        {
+                            row = 4;
+                        }
+                        else
+                        {
+                            row = Int32.Parse(cardText.Name.Substring(cardText.Name.Length - 2, 1));
+                        }
+
+                        cardText.Text = cardsOnTable[row - 1, col - 1].ToString();
+                    }
+                    catch (Exception exc)
+                    {
+                        cardText.Text = "";
+                    }
+                }
+            }
         }
 
     }
