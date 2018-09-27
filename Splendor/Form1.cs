@@ -99,7 +99,7 @@ namespace Splendor
             cardsOnTable[2,1] = level2Cards.Pop();
             cardsOnTable[3,1] = level3Cards.Pop();*/
 
-            PickCards();
+            PutCardsOnTable();
 
             //load cards from the database
             Stack<Card> listCardOne = conn.GetListCardAccordingToLevel(1);
@@ -124,6 +124,14 @@ namespace Splendor
             //we wire the click on all cards to the same event
             //TO DO for all cards
             txtLevel13.Click += ClickOnCard;
+
+            foreach (FlowLayoutPanel control in this.Controls.OfType<FlowLayoutPanel>())
+            {
+                foreach (CardText cardText in control.Controls.OfType<CardText>())
+                {
+                    cardText.LoadPosition();
+                }
+            }
         }
 
         private Stack<T> Shuffle<T>(Stack<T> stack)
@@ -152,7 +160,6 @@ namespace Splendor
             int id = 0;
            
             LoadPlayer(id);
-
         }
 
 
@@ -198,12 +205,14 @@ namespace Splendor
             lblPlayer.Text = "Jeu de " + name;
 
             cmdPlay.Enabled = false;
+
+            
         }
 
         /// <summary>
         /// Pick a new card from the stack for every missing cards on the table
         /// </summary>
-        private void PickCards()
+        private void PutCardsOnTable()
         {
             for (int i = 0; i < cardsOnTable.GetLength(0); i++)
             {
@@ -211,19 +220,21 @@ namespace Splendor
                 {
                     if(cardsOnTable[i,j] == null)
                     {
-                        try
+                        
+                        switch (i)
                         {
-                            switch (i)
-                            {
-                                case 0: cardsOnTable[i, j] = level1Cards.Pop(); break;
-                                case 1: cardsOnTable[i, j] = level2Cards.Pop(); break;
-                                case 2: cardsOnTable[i, j] = level3Cards.Pop(); break;
-                                case 3: cardsOnTable[i, j] = level4Cards.Pop(); break;
-                            }
-                        }
-                        catch (InvalidOperationException exc)
-                        {
-                            cardsOnTable[i, j] = null;
+                            case 0:
+                                if (level1Cards.Count == 0) continue;
+                                cardsOnTable[i, j] = level1Cards.Pop(); break;
+                            case 1:
+                                if (level2Cards.Count == 0) continue;
+                                cardsOnTable[i, j] = level2Cards.Pop(); break;
+                            case 2:
+                                if (level3Cards.Count == 0) continue;
+                                cardsOnTable[i, j] = level3Cards.Pop(); break;
+                            case 3:
+                                if (level4Cards.Count == 0) continue;
+                                cardsOnTable[i, j] = level4Cards.Pop(); break;
                         }
                     }
                 }
@@ -233,12 +244,41 @@ namespace Splendor
         }
 
         /// <summary>
+        /// Pick a new card for this place on the board
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
+        private void PickNewCard(int row, int col)
+        {
+            switch (row)
+            {
+                case 0:
+                    if (level1Cards.Count == 0) break;
+                    cardsOnTable[row, col] = level1Cards.Pop(); break;
+                case 1:
+                    if (level2Cards.Count == 0) break;
+                    cardsOnTable[row, col] = level2Cards.Pop(); break;
+                case 2:
+                    if (level3Cards.Count == 0) break;
+                    cardsOnTable[row, col] = level3Cards.Pop(); break;
+                case 3:
+                    if (level4Cards.Count == 0) break;
+                    cardsOnTable[row, col] = level4Cards.Pop(); break;
+            }
+        }
+
+        /// <summary>
         /// click on the red coin (rubis) to tell the player has selected this coin
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void lblRubisCoin_Click(object sender, EventArgs e)
         {
+            Label lbl = (Label)sender;
+            if (lbl.Name.Contains("Rubis"))
+            {
+
+            }
             if (enableClicLabel)
             {
                 cmdValidateChoice.Visible = true;
@@ -337,36 +377,60 @@ namespace Splendor
             DrawCards();
         }
 
+        /// <summary>
+        /// Draw the cards on the board
+        /// </summary>
         private void DrawCards()
         {
             //Check all the text box for the cards if there is a card associated, if so, print the card properties inside
-            foreach (Control control in this.Controls.OfType<FlowLayoutPanel>())
+            foreach (FlowLayoutPanel control in this.Controls.OfType<FlowLayoutPanel>())
             {
-                foreach (Control cardText in control.Controls.OfType<TextBox>())
+                foreach (CardText cardText in control.Controls.OfType<CardText>())
                 {
-                    try
-                    {
-                        int col = Int32.Parse(cardText.Name.Substring(cardText.Name.Length - 1, 1));
-                        int row = 0;
-
-                        if (cardText.Name.Contains("Noble"))
-                        {
-                            row = 4;
-                        }
-                        else
-                        {
-                            row = Int32.Parse(cardText.Name.Substring(cardText.Name.Length - 2, 1));
-                        }
-
-                        cardText.Text = cardsOnTable[row - 1, col - 1].ToString();
-                    }
-                    catch (Exception exc)
-                    {
-                        cardText.Text = "";
-                    }
+                    cardText.Card = cardsOnTable[cardText.row, cardText.col];
+                    cardText.Refresh();
                 }
             }
         }
 
+        /// <summary>
+        /// Where the player click on a card
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtCards_Click(object sender, EventArgs e)
+        {
+            //TODO: do the logic (if the game started, is the player has enough coins, etc...)
+
+            CardText txtCard = (CardText)sender;
+            int cardRow = 0;
+            int cardCol = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 1, 1));
+
+            if (txtCard.Name.Contains("Noble"))
+            {
+                cardRow = 4;
+            }
+            else
+            {
+                cardRow = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 2, 1));
+            }
+
+            Card card = cardsOnTable[cardRow-1, cardCol-1];
+
+            cardsOnTable[cardRow-1, cardCol-1] = null;
+
+            if(cardRow!=4) PickNewCard(cardRow-1, cardCol - 1);
+
+            DrawCards();
+        }
+
+        private void cardText1_Click(object sender, EventArgs e)
+        {
+            CardText ct = (CardText)sender;
+
+            ct.Card = new Card(1, Ressources.Diamand, 666, new Dictionary<Ressources, int> { { Ressources.Saphir, 666 } });
+
+            DrawCards();
+        }
     }
 }

@@ -67,6 +67,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="CardText.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ConnectionDB.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

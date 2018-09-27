@@ -15,7 +15,7 @@ namespace Splendor
         /// <summary>
         /// the precious stone that the card gives
         /// </summary>
-        public Ressources Ress { get; set; }
+        public Ressources? Ress { get; set; }
 
         /// <summary>
         /// number of prestige point of the card
@@ -38,7 +38,7 @@ namespace Splendor
 
         }
 
-        public Card(int level, Ressources ressource, int prestige, Dictionary<Ressources, int> cost)
+        public Card(int level, Ressources? ressource, int prestige, Dictionary<Ressources, int> cost)
         {
             this.Level = level;
             this.Ress = ressource;
@@ -56,7 +56,7 @@ namespace Splendor
             
             res = Enum.GetName(typeof(Ressources), Ress);
             //Be careful, those \t enables to split the string when clicking on a card
-            res += "\t";
+            res += " ";
 
             if (PrestigePt != 0)
             {
