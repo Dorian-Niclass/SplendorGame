@@ -99,7 +99,6 @@ namespace Splendor
             cardsOnTable[2,1] = level2Cards.Pop();
             cardsOnTable[3,1] = level3Cards.Pop();*/
 
-            PutCardsOnTable();
 
             //load cards from the database
             Stack<Card> listCardOne = conn.GetListCardAccordingToLevel(1);
@@ -132,6 +131,8 @@ namespace Splendor
                     cardText.LoadPosition();
                 }
             }
+
+            PutCardsOnTable();
         }
 
         private Stack<T> Shuffle<T>(Stack<T> stack)
@@ -240,6 +241,14 @@ namespace Splendor
                 }
             }
 
+            foreach (FlowLayoutPanel control in this.Controls.OfType<FlowLayoutPanel>())
+            {
+                foreach (CardText cardText in control.Controls.OfType<CardText>())
+                {
+                    cardText.SetCard(cardsOnTable[cardText.row, cardText.col]);
+                }
+            }
+
             DrawCards();
         }
 
@@ -248,23 +257,26 @@ namespace Splendor
         /// </summary>
         /// <param name="row"></param>
         /// <param name="col"></param>
-        private void PickNewCard(int row, int col)
+        private Card PickNewCard(int row, int col)
         {
+            Card card = null;
             switch (row)
             {
                 case 0:
                     if (level1Cards.Count == 0) break;
-                    cardsOnTable[row, col] = level1Cards.Pop(); break;
+                    card = level1Cards.Pop(); break;
                 case 1:
                     if (level2Cards.Count == 0) break;
-                    cardsOnTable[row, col] = level2Cards.Pop(); break;
+                    card = level2Cards.Pop(); break;
                 case 2:
                     if (level3Cards.Count == 0) break;
-                    cardsOnTable[row, col] = level3Cards.Pop(); break;
+                    card = level3Cards.Pop(); break;
                 case 3:
                     if (level4Cards.Count == 0) break;
-                    cardsOnTable[row, col] = level4Cards.Pop(); break;
+                    card = level4Cards.Pop(); break;
             }
+            cardsOnTable[row, col] = card;
+            return card;
         }
 
         /// <summary>
@@ -387,7 +399,6 @@ namespace Splendor
             {
                 foreach (CardText cardText in control.Controls.OfType<CardText>())
                 {
-                    cardText.Card = cardsOnTable[cardText.row, cardText.col];
                     cardText.Refresh();
                 }
             }
@@ -418,17 +429,11 @@ namespace Splendor
             Card card = cardsOnTable[cardRow-1, cardCol-1];
 
             cardsOnTable[cardRow-1, cardCol-1] = null;
+            txtCard.SetCard(null);
 
-            if(cardRow!=4) PickNewCard(cardRow-1, cardCol - 1);
-
-            DrawCards();
-        }
-
-        private void cardText1_Click(object sender, EventArgs e)
-        {
-            CardText ct = (CardText)sender;
-
-            ct.Card = new Card(1, Ressources.Diamand, 666, new Dictionary<Ressources, int> { { Ressources.Saphir, 666 } });
+            if (cardRow != 4) {
+                txtCard.SetCard(PickNewCard(cardRow - 1, cardCol - 1));
+            }
 
             DrawCards();
         }
