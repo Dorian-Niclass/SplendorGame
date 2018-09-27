@@ -124,7 +124,6 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdPlay_Click(object sender, EventArgs e)
         {
-            this.Width = 680;
             this.Height = 780;
 
             int id = 0;
@@ -179,221 +178,151 @@ namespace Splendor
         }
 
         /// <summary>
-        /// click on the red coin (rubis) to tell the player has selected this coin
+        /// click on one of the pieces (rubis, saphir, onyx, emeraude, diamand) to tell the player has selected one of them
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void lblRubisCoin_Click(object sender, EventArgs e)
+        private void lblCoin_Click(object sender, EventArgs e)
         {
+            Label label = (Label)sender;        
+
             if (enableClicLabel)
             {
                 cmdValidateChoice.Visible = true;
-                lblChoiceRubis.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbRubis++;
-                lblChoiceRubis.Text = nbRubis + "\r\n";
-            }
-        }
 
-        /// <summary>
-        /// click on the blue coin (saphir) to tell the player has selected this coin
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblSaphirCoin_Click(object sender, EventArgs e)
-        {
-            if (enableClicLabel)
-            {
-                cmdValidateChoice.Visible = true;
-                lblChoiceSaphir.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbSaphir++;
-                lblChoiceSaphir.Text = nbSaphir + "\r\n";
-            }
-        }
-
-        /// <summary>
-        /// click on the black coin (onyx) to tell the player has selected this coin
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblOnyxCoin_Click(object sender, EventArgs e)
-        {
-            if (enableClicLabel)
-            {
-                cmdValidateChoice.Visible = true;
-                lblChoiceOnyx.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbOnyx++;
-                lblChoiceOnyx.Text = nbOnyx + "\r\n";
-            }
-        }
-
-        /// <summary>
-        /// click on the green coin (emeraude) to tell the player has selected this coin
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblEmeraudeCoin_Click(object sender, EventArgs e)
-        {
-            if (enableClicLabel)
-            {
-                cmdValidateChoice.Visible = true;
-                lblChoiceEmeraude.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbEmeraude++;
-                lblChoiceEmeraude.Text = nbEmeraude + "\r\n";
-            }
-        }
-
-        /// <summary>
-        /// click on the white coin (diamand) to tell the player has selected this coin
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblDiamandCoin_Click(object sender, EventArgs e)
-        {
-            if (enableClicLabel)
-            {
-                cmdValidateChoice.Visible = true;
-                lblChoiceDiamand.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbDiamand++;
-                lblChoiceDiamand.Text = nbDiamand + "\r\n";
-            }
-        }
-
-        /// <summary>
-        /// click on the red coin (rubis) to tell the player has unselected this coin
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblChoiceRubis_Click(object sender, EventArgs e)
-        {
-            if (enableClicLabel)
-            {
-                cmdValidateChoice.Visible = true;
-                lblChoiceRubis.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbRubis--;
-                lblChoiceRubis.Text = nbRubis + "\r\n";
-
-                if (nbRubis == 0)
+                switch (label.Name)
                 {
-                    lblChoiceRubis.Text = null;
-
-                    if (nbSaphir == 0 && nbOnyx == 0 && nbEmeraude == 0 && nbDiamand == 0)  
-                    {
-                        cmdValidateChoice.Visible = false;
-                    }
-                }
+                    case "lblRubisCoin":
+                        lblChoiceRubis.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbRubis++;
+                        lblChoiceRubis.Text = nbRubis + "\r\n";
+                        break;
+                    case "lblSaphirCoin":
+                        lblChoiceSaphir.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbSaphir++;
+                        lblChoiceSaphir.Text = nbSaphir + "\r\n";
+                        break;
+                    case "lblOnyxCoin":
+                        lblChoiceOnyx.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbOnyx++;
+                        lblChoiceOnyx.Text = nbOnyx + "\r\n";
+                        break;
+                    case "lblEmeraudeCoin":
+                        lblChoiceEmeraude.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbEmeraude++;
+                        lblChoiceEmeraude.Text = nbEmeraude + "\r\n";
+                        break;
+                    case "lblDiamandCoin":
+                        lblChoiceDiamand.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbDiamand++;
+                        lblChoiceDiamand.Text = nbDiamand + "\r\n";
+                        break;
+                    default: break;
+                }            
             }
         }
 
         /// <summary>
-        /// click on the blue coin (saphir) to tell the player has unselected this coin
+        /// click on one of the coin (rubis, saphir, onyx, emeraude, diamand) to tell the player has unselected one of them
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void lblChoiceSaphir_Click(object sender, EventArgs e)
+        private void lblChoice_Click(object sender, EventArgs e)
         {
+            Label label = (Label)sender;
+
             if (enableClicLabel)
             {
                 cmdValidateChoice.Visible = true;
-                lblChoiceSaphir.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbSaphir--;
-                lblChoiceSaphir.Text = nbSaphir + "\r\n";
 
-                if (nbSaphir == 0)
+                switch (label.Name)
                 {
-                    lblChoiceSaphir.Text = null;
+                    case "lblChoiceRubis":
+                        lblChoiceRubis.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbRubis--;
+                        lblChoiceRubis.Text = nbRubis + "\r\n";
 
-                    if (nbRubis == 0 && nbOnyx == 0 && nbEmeraude == 0 && nbDiamand == 0)
-                    {
-                        cmdValidateChoice.Visible = false;
-                    }
-                }
-            }
-        }
+                        if (nbRubis == 0)
+                        {
+                            lblChoiceRubis.Text = null;
 
-        /// <summary>
-        /// click on the black coin (onyx) to tell the player has unselected this coin
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblChoiceOnyx_Click(object sender, EventArgs e)
-        {
-            if (enableClicLabel)
-            {
-                cmdValidateChoice.Visible = true;
-                lblChoiceOnyx.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbOnyx--;
-                lblChoiceOnyx.Text = nbOnyx + "\r\n";
+                            if (nbSaphir == 0 && nbOnyx == 0 && nbEmeraude == 0 && nbDiamand == 0)
+                            {
+                                cmdValidateChoice.Visible = false;
+                            }
+                        }
+                        break;
+                    case "lblChoiceSaphir":
+                        lblChoiceSaphir.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbSaphir--;
+                        lblChoiceSaphir.Text = nbSaphir + "\r\n";
 
-                if (nbOnyx == 0)
-                {
-                    lblChoiceOnyx.Text = null;
+                        if (nbSaphir == 0)
+                        {
+                            lblChoiceSaphir.Text = null;
 
-                    if (nbRubis == 0 && nbSaphir == 0 && nbEmeraude == 0 && nbDiamand == 0)
-                    {
-                        cmdValidateChoice.Visible = false;
-                    }
-                }
-            }
-        }
+                            if (nbRubis == 0 && nbOnyx == 0 && nbEmeraude == 0 && nbDiamand == 0)
+                            {
+                                cmdValidateChoice.Visible = false;
+                            }
+                        }
+                        break;
+                    case "lblChoiceOnyx":
+                        lblChoiceOnyx.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbOnyx--;
+                        lblChoiceOnyx.Text = nbOnyx + "\r\n";
 
-        /// <summary>
-        /// click on the green coin (emeraude) to tell the player has unselected this coin
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblChoiceEmeraude_Click(object sender, EventArgs e)
-        {
-            if (enableClicLabel)
-            {
-                cmdValidateChoice.Visible = true;
-                lblChoiceEmeraude.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbEmeraude--;
-                lblChoiceEmeraude.Text = nbEmeraude + "\r\n";
+                        if (nbOnyx == 0)
+                        {
+                            lblChoiceOnyx.Text = null;
 
-                if (nbEmeraude == 0)
-                {
-                    lblChoiceEmeraude.Text = null;
+                            if (nbRubis == 0 && nbSaphir == 0 && nbEmeraude == 0 && nbDiamand == 0)
+                            {
+                                cmdValidateChoice.Visible = false;
+                            }
+                        }
+                        break;
+                    case "lblChoiceEmeraude":
+                        lblChoiceEmeraude.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbEmeraude--;
+                        lblChoiceEmeraude.Text = nbEmeraude + "\r\n";
 
-                    if (nbRubis == 0 && nbSaphir == 0 && nbOnyx == 0 && nbDiamand == 0)
-                    {
-                        cmdValidateChoice.Visible = false;
-                    }
-                }
-            }
-        }
+                        if (nbEmeraude == 0)
+                        {
+                            lblChoiceEmeraude.Text = null;
 
-        /// <summary>
-        /// click on the white coin (diamand) to tell the player has unselected this coin
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblChoiceDiamand_Click(object sender, EventArgs e)
-        {
-            if (enableClicLabel)
-            {
-                cmdValidateChoice.Visible = true;
-                lblChoiceDiamand.Visible = true;
-                //TO DO check if possible to choose a coin, update the number of available coin
-                nbDiamand--;
-                lblChoiceDiamand.Text = nbDiamand + "\r\n";
+                            if (nbRubis == 0 && nbSaphir == 0 && nbOnyx == 0 && nbDiamand == 0)
+                            {
+                                cmdValidateChoice.Visible = false;
+                            }
+                        }
+                        break;
+                    case "lblChoiceDiamand":
+                        lblChoiceDiamand.Visible = true;
+                        //TO DO check if possible to choose a coin, update the number of available coin
+                        nbDiamand--;
+                        lblChoiceDiamand.Text = nbDiamand + "\r\n";
 
-                if (nbDiamand == 0)
-                {
-                    lblChoiceDiamand.Text = null;
+                        if (nbDiamand == 0)
+                        {
+                            lblChoiceDiamand.Text = null;
 
-                    if (nbRubis == 0 && nbSaphir == 0 && nbOnyx == 0 && nbEmeraude == 0)
-                    {
-                        cmdValidateChoice.Visible = false;
-                    }
+                            if (nbRubis == 0 && nbSaphir == 0 && nbOnyx == 0 && nbEmeraude == 0)
+                            {
+                                cmdValidateChoice.Visible = false;
+                            }
+                        }
+                        break;
+                    default: break;
                 }
             }
         }
