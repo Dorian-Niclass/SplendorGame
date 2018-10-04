@@ -48,6 +48,8 @@ namespace Splendor
 
         private Card[,] cardsOnTable = new Card[4, 4];
 
+        private List<Player> players;
+
         /// <summary>
         /// constructor
         /// </summary>
@@ -156,11 +158,14 @@ namespace Splendor
         private void cmdPlay_Click(object sender, EventArgs e)
         {
             this.Width = 680;
-            this.Height = 780;
+            this.Height = 800;
 
             int id = 0;
-           
-            LoadPlayer(id);
+
+            players = conn.GetPlayers();
+
+            LoadPlayer(0);
+
         }
 
 
@@ -168,11 +173,10 @@ namespace Splendor
         /// load data about the current player
         /// </summary>
         /// <param name="id">identifier of the player</param>
-        private void LoadPlayer(int id) { 
+        private void LoadPlayer(int id) {
+            Player player = players[id];
 
             enableClicLabel = true;
-
-            string name = conn.GetPlayerName(currentPlayerId);
 
             //no coins or card selected yet, labels are empty
             lblChoiceDiamand.Text = "";
@@ -190,11 +194,6 @@ namespace Splendor
             nbSaphir = 0;
             nbEmeraude = 0;
 
-            Player player = new Player();
-            player.Name = name;
-            player.Id = id;
-            player.Ressources = new int[] { 2, 0, 1, 1, 1 };
-            player.Coins = new int[] { 0, 1, 0, 1, 1 };
 
             lblPlayerDiamandCoin.Text = player.Coins[0].ToString();
             lblPlayerOnyxCoin.Text = player.Coins[1].ToString();
@@ -203,9 +202,10 @@ namespace Splendor
             lblPlayerEmeraudeCoin.Text = player.Coins[4].ToString();
             currentPlayerId = id;
 
-            lblPlayer.Text = "Jeu de " + name;
+            lblPlayer.Text = "Jeu de " + player.Name;
 
             cmdPlay.Enabled = false;
+
 
             
         }
@@ -243,6 +243,8 @@ namespace Splendor
 
             foreach (FlowLayoutPanel control in this.Controls.OfType<FlowLayoutPanel>())
             {
+                if (control == flwPalyerCards) continue;
+
                 foreach (CardText cardText in control.Controls.OfType<CardText>())
                 {
                     cardText.SetCard(cardsOnTable[cardText.row, cardText.col]);
@@ -394,6 +396,9 @@ namespace Splendor
         /// </summary>
         private void DrawCards()
         {
+
+            RefreshPlayerCards();
+
             //Check all the text box for the cards if there is a card associated, if so, print the card properties inside
             foreach (FlowLayoutPanel control in this.Controls.OfType<FlowLayoutPanel>())
             {
@@ -402,6 +407,8 @@ namespace Splendor
                     cardText.Refresh();
                 }
             }
+
+
         }
 
         /// <summary>
@@ -412,27 +419,57 @@ namespace Splendor
         private void txtCards_Click(object sender, EventArgs e)
         {
             //TODO: do the logic (if the game started, is the player has enough coins, etc...)
+            if (enableClicLabel) {
 
-            CardText txtCard = (CardText)sender;
-            int cardRow = 0;
-            int cardCol = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 1, 1));
+                CardText txtCard = (CardText)sender;
+                Card card = txtCard.Card;             
 
-            if (txtCard.Name.Contains("Noble"))
-            {
-                cardRow = 4;
+                players[currentPlayerId].Cards.Add(card);
+
+                int cardRow = 0;
+                int cardCol = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 1, 1));
+
+                if (txtCard.Name.Contains("Noble"))
+                {
+                    cardRow = 4;
+                }
+                else
+                {
+                    cardRow = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 2, 1));
+                }
+
+                cardsOnTable[cardRow - 1, cardCol - 1] = null;
+                txtCard.SetCard(null);
+
+                if (cardRow != 4) {
+                    txtCard.SetCard(PickNewCard(cardRow - 1, cardCol - 1));
+                }
+
+                DrawCards();
             }
-            else
+        }
+
+        private void RefreshPlayerCards()
+        {
+            if (players != null)
             {
-                cardRow = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 2, 1));
+
+                try { txtPlayerRubisCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Rubis).ToList()[(int)numCardRubis.Value]); } catch { }
+                try { txtPlayerSaphirCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Saphir).ToList()[(int)numCardSaphir.Value]); } catch { }
+                try { txtPlayerOnyxCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Onyx).ToList()[(int)numCardOnyx.Value]); } catch { }
+                try { txtPlayerEmeraudeCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Emeraude).ToList()[(int)numCardEmeraude.Value]); } catch { }
+                try { txtPlayerDiamandCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Diamand).ToList()[(int)numCardDiamand.Value]); } catch { }
             }
+        }
 
-            Card card = cardsOnTable[cardRow-1, cardCol-1];
+        private void nbCards_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+            string ress = num.Name.Substring(7);
 
-            cardsOnTable[cardRow-1, cardCol-1] = null;
-            txtCard.SetCard(null);
-
-            if (cardRow != 4) {
-                txtCard.SetCard(PickNewCard(cardRow - 1, cardCol - 1));
+            if((int)num.Value > players[currentPlayerId].Cards.Where(x => x.Ress == (Ressources)Enum.Parse(typeof(Ressources), ress)).ToList().Count-1)
+            {
+                num.Value = 0;
             }
 
             DrawCards();

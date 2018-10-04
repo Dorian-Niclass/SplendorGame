@@ -26,12 +26,14 @@ namespace Splendor
         /// <summary>
         /// all the coins he has
         /// </summary>
-        public int[] Coins { get; set; }
+        public Dictionary<Ressources, int> Coins = new Dictionary<Ressources, int>();
 
         /// <summary>
         /// id of the player
         /// </summary>
         public int Id { get; set; }
+
+        public List<Card> Cards { get; set; }
 
     }
 }

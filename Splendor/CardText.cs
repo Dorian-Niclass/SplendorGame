@@ -14,6 +14,7 @@ namespace Splendor
         public int row;
         public int col;
         private bool cardChanged = true;
+        public bool CanSelect = true;
 
         private Label ressLabel = new Label();
         private Label prestigeLabel = new Label();
@@ -24,7 +25,8 @@ namespace Splendor
             this.ReadOnly = true;
             this.Size = new System.Drawing.Size(102, 98);
             this.Multiline = true;
-            this.Cursor = Cursors.Hand;     
+            this.Cursor = Cursors.Hand;
+            this.Card = null;
         }
 
         public void SetCard(Card card)
@@ -69,6 +71,7 @@ namespace Splendor
             this.costTxt.ReadOnly = true;
             this.costTxt.BackColor = Color.LightGray;
             this.costTxt.Click += new EventHandler(childControl_Click);
+            this.costTxt.Cursor = Cursors.Hand;
             this.Controls.Add(costTxt);
 
 

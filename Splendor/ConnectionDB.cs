@@ -124,6 +124,9 @@ namespace Splendor
         /// <returns></returns>
         public string GetPlayerName(int id)
         {
+            m_dbConnection = new SQLiteConnection("Data Source=Splendor.sqlite;Version=3;");
+            m_dbConnection.Open();
+
             string sql = "select pseudo from player where id = " + id;
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             SQLiteDataReader reader = command.ExecuteReader();
@@ -132,7 +135,38 @@ namespace Splendor
             {
                 name = reader["pseudo"].ToString();
             }
+
+            m_dbConnection.Close();
+
             return name;
+        }
+
+        public List<Player> GetPlayers()
+        {
+            List<Player> players = new List<Player>();
+            m_dbConnection = new SQLiteConnection("Data Source=Splendor.sqlite;Version=3;");
+            m_dbConnection.Open();
+
+            string sql = "select * from player";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Player player = new Player();
+                string name = reader["pseudo"].ToString();
+                int id = (int)reader["id"];
+                player.Name = name;
+                player.Id = id;
+                player.Ressources = new int[] { 0, 0, 0, 0, 0 };
+                player.Coins = new int[] { 0, 0, 0, 0, 0 };
+                player.Cards = new List<Card>();
+
+                players.Add(player);
+            }
+
+            m_dbConnection.Close();
+
+            return players;
         }
 
         /// <summary>

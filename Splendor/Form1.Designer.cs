@@ -36,10 +36,6 @@
             this.lblDiamandCoin = new System.Windows.Forms.Label();
             this.cmdInsertPlayer = new System.Windows.Forms.Button();
             this.cmdPlay = new System.Windows.Forms.Button();
-            this.txtPlayerEmeraudeCard = new System.Windows.Forms.TextBox();
-            this.txtPlayerOnyxCard = new System.Windows.Forms.TextBox();
-            this.txtPlayerSaphirCard = new System.Windows.Forms.TextBox();
-            this.txtPlayerRubisCard = new System.Windows.Forms.TextBox();
             this.lblPlayerDiamandCoin = new System.Windows.Forms.Label();
             this.lblPlayerEmeraudeCoin = new System.Windows.Forms.Label();
             this.lblPlayerOnyxCoin = new System.Windows.Forms.Label();
@@ -47,7 +43,6 @@
             this.lblPlayerRubisCoin = new System.Windows.Forms.Label();
             this.lblPlayerGoldCoin = new System.Windows.Forms.Label();
             this.txtPlayerBookedCard = new System.Windows.Forms.TextBox();
-            this.txtPlayerDiamandCard = new System.Windows.Forms.TextBox();
             this.lblChoiceRubis = new System.Windows.Forms.Label();
             this.lblChoiceSaphir = new System.Windows.Forms.Label();
             this.lblChoiceOnyx = new System.Windows.Forms.Label();
@@ -62,6 +57,17 @@
             this.flwCardLevel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flwCardLevel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flwCardNoble = new System.Windows.Forms.FlowLayoutPanel();
+            this.numCardRubis = new System.Windows.Forms.NumericUpDown();
+            this.numCardSaphir = new System.Windows.Forms.NumericUpDown();
+            this.numCardOnyx = new System.Windows.Forms.NumericUpDown();
+            this.numCardEmeraude = new System.Windows.Forms.NumericUpDown();
+            this.numCardDiamand = new System.Windows.Forms.NumericUpDown();
+            this.flwPalyerCards = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtPlayerRubisCard = new Splendor.CardText();
+            this.txtPlayerSaphirCard = new Splendor.CardText();
+            this.txtPlayerOnyxCard = new Splendor.CardText();
+            this.txtPlayerEmeraudeCard = new Splendor.CardText();
+            this.txtPlayerDiamandCard = new Splendor.CardText();
             this.txtNoble4 = new Splendor.CardText();
             this.txtNoble3 = new Splendor.CardText();
             this.txtNoble2 = new Splendor.CardText();
@@ -82,6 +88,12 @@
             this.flwCardLevel2.SuspendLayout();
             this.flwCardLevel3.SuspendLayout();
             this.flwCardNoble.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardRubis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardSaphir)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardOnyx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardEmeraude)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardDiamand)).BeginInit();
+            this.flwPalyerCards.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblGoldCoin
@@ -183,45 +195,6 @@
             this.cmdPlay.UseVisualStyleBackColor = true;
             this.cmdPlay.Click += new System.EventHandler(this.cmdPlay_Click);
             // 
-            // txtPlayerEmeraudeCard
-            // 
-            this.txtPlayerEmeraudeCard.ForeColor = System.Drawing.Color.Green;
-            this.txtPlayerEmeraudeCard.Location = new System.Drawing.Point(380, 624);
-            this.txtPlayerEmeraudeCard.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPlayerEmeraudeCard.Multiline = true;
-            this.txtPlayerEmeraudeCard.Name = "txtPlayerEmeraudeCard";
-            this.txtPlayerEmeraudeCard.Size = new System.Drawing.Size(81, 98);
-            this.txtPlayerEmeraudeCard.TabIndex = 30;
-            // 
-            // txtPlayerOnyxCard
-            // 
-            this.txtPlayerOnyxCard.Location = new System.Drawing.Point(260, 624);
-            this.txtPlayerOnyxCard.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPlayerOnyxCard.Multiline = true;
-            this.txtPlayerOnyxCard.Name = "txtPlayerOnyxCard";
-            this.txtPlayerOnyxCard.Size = new System.Drawing.Size(81, 98);
-            this.txtPlayerOnyxCard.TabIndex = 29;
-            // 
-            // txtPlayerSaphirCard
-            // 
-            this.txtPlayerSaphirCard.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txtPlayerSaphirCard.Location = new System.Drawing.Point(140, 624);
-            this.txtPlayerSaphirCard.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPlayerSaphirCard.Multiline = true;
-            this.txtPlayerSaphirCard.Name = "txtPlayerSaphirCard";
-            this.txtPlayerSaphirCard.Size = new System.Drawing.Size(81, 98);
-            this.txtPlayerSaphirCard.TabIndex = 28;
-            // 
-            // txtPlayerRubisCard
-            // 
-            this.txtPlayerRubisCard.ForeColor = System.Drawing.Color.Red;
-            this.txtPlayerRubisCard.Location = new System.Drawing.Point(20, 624);
-            this.txtPlayerRubisCard.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPlayerRubisCard.Multiline = true;
-            this.txtPlayerRubisCard.Name = "txtPlayerRubisCard";
-            this.txtPlayerRubisCard.Size = new System.Drawing.Size(81, 98);
-            this.txtPlayerRubisCard.TabIndex = 27;
-            // 
             // lblPlayerDiamandCoin
             // 
             this.lblPlayerDiamandCoin.AutoSize = true;
@@ -302,16 +275,6 @@
             this.txtPlayerBookedCard.Name = "txtPlayerBookedCard";
             this.txtPlayerBookedCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerBookedCard.TabIndex = 31;
-            // 
-            // txtPlayerDiamandCard
-            // 
-            this.txtPlayerDiamandCard.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtPlayerDiamandCard.Location = new System.Drawing.Point(502, 624);
-            this.txtPlayerDiamandCard.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPlayerDiamandCard.Multiline = true;
-            this.txtPlayerDiamandCard.Name = "txtPlayerDiamandCard";
-            this.txtPlayerDiamandCard.Size = new System.Drawing.Size(81, 98);
-            this.txtPlayerDiamandCard.TabIndex = 32;
             // 
             // lblChoiceRubis
             // 
@@ -473,180 +436,304 @@
             this.flwCardNoble.Size = new System.Drawing.Size(452, 109);
             this.flwCardNoble.TabIndex = 50;
             // 
+            // numCardRubis
+            // 
+            this.numCardRubis.Location = new System.Drawing.Point(48, 628);
+            this.numCardRubis.Name = "numCardRubis";
+            this.numCardRubis.Size = new System.Drawing.Size(40, 20);
+            this.numCardRubis.TabIndex = 60;
+            this.numCardRubis.ValueChanged += new System.EventHandler(this.nbCards_ValueChanged);
+            // 
+            // numCardSaphir
+            // 
+            this.numCardSaphir.Location = new System.Drawing.Point(155, 628);
+            this.numCardSaphir.Name = "numCardSaphir";
+            this.numCardSaphir.Size = new System.Drawing.Size(40, 20);
+            this.numCardSaphir.TabIndex = 61;
+            this.numCardSaphir.ValueChanged += new System.EventHandler(this.nbCards_ValueChanged);
+            // 
+            // numCardOnyx
+            // 
+            this.numCardOnyx.Location = new System.Drawing.Point(268, 628);
+            this.numCardOnyx.Name = "numCardOnyx";
+            this.numCardOnyx.Size = new System.Drawing.Size(40, 20);
+            this.numCardOnyx.TabIndex = 62;
+            this.numCardOnyx.ValueChanged += new System.EventHandler(this.nbCards_ValueChanged);
+            // 
+            // numCardEmeraude
+            // 
+            this.numCardEmeraude.Location = new System.Drawing.Point(371, 628);
+            this.numCardEmeraude.Name = "numCardEmeraude";
+            this.numCardEmeraude.Size = new System.Drawing.Size(40, 20);
+            this.numCardEmeraude.TabIndex = 63;
+            this.numCardEmeraude.ValueChanged += new System.EventHandler(this.nbCards_ValueChanged);
+            // 
+            // numCardDiamand
+            // 
+            this.numCardDiamand.Location = new System.Drawing.Point(475, 628);
+            this.numCardDiamand.Name = "numCardDiamand";
+            this.numCardDiamand.Size = new System.Drawing.Size(40, 20);
+            this.numCardDiamand.TabIndex = 64;
+            this.numCardDiamand.ValueChanged += new System.EventHandler(this.nbCards_ValueChanged);
+            // 
+            // flwPalyerCards
+            // 
+            this.flwPalyerCards.Controls.Add(this.txtPlayerRubisCard);
+            this.flwPalyerCards.Controls.Add(this.txtPlayerSaphirCard);
+            this.flwPalyerCards.Controls.Add(this.txtPlayerOnyxCard);
+            this.flwPalyerCards.Controls.Add(this.txtPlayerEmeraudeCard);
+            this.flwPalyerCards.Controls.Add(this.txtPlayerDiamandCard);
+            this.flwPalyerCards.Location = new System.Drawing.Point(17, 653);
+            this.flwPalyerCards.Margin = new System.Windows.Forms.Padding(2);
+            this.flwPalyerCards.Name = "flwPalyerCards";
+            this.flwPalyerCards.Size = new System.Drawing.Size(546, 107);
+            this.flwPalyerCards.TabIndex = 55;
+            // 
+            // txtPlayerRubisCard
+            // 
+            this.txtPlayerRubisCard.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtPlayerRubisCard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtPlayerRubisCard.Location = new System.Drawing.Point(3, 3);
+            this.txtPlayerRubisCard.Multiline = true;
+            this.txtPlayerRubisCard.Name = "txtPlayerRubisCard";
+            this.txtPlayerRubisCard.ReadOnly = true;
+            this.txtPlayerRubisCard.Size = new System.Drawing.Size(102, 98);
+            this.txtPlayerRubisCard.TabIndex = 55;
+            // 
+            // txtPlayerSaphirCard
+            // 
+            this.txtPlayerSaphirCard.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtPlayerSaphirCard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtPlayerSaphirCard.Location = new System.Drawing.Point(111, 3);
+            this.txtPlayerSaphirCard.Multiline = true;
+            this.txtPlayerSaphirCard.Name = "txtPlayerSaphirCard";
+            this.txtPlayerSaphirCard.ReadOnly = true;
+            this.txtPlayerSaphirCard.Size = new System.Drawing.Size(102, 98);
+            this.txtPlayerSaphirCard.TabIndex = 56;
+            // 
+            // txtPlayerOnyxCard
+            // 
+            this.txtPlayerOnyxCard.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtPlayerOnyxCard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtPlayerOnyxCard.Location = new System.Drawing.Point(219, 3);
+            this.txtPlayerOnyxCard.Multiline = true;
+            this.txtPlayerOnyxCard.Name = "txtPlayerOnyxCard";
+            this.txtPlayerOnyxCard.ReadOnly = true;
+            this.txtPlayerOnyxCard.Size = new System.Drawing.Size(102, 98);
+            this.txtPlayerOnyxCard.TabIndex = 57;
+            // 
+            // txtPlayerEmeraudeCard
+            // 
+            this.txtPlayerEmeraudeCard.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtPlayerEmeraudeCard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtPlayerEmeraudeCard.Location = new System.Drawing.Point(327, 3);
+            this.txtPlayerEmeraudeCard.Multiline = true;
+            this.txtPlayerEmeraudeCard.Name = "txtPlayerEmeraudeCard";
+            this.txtPlayerEmeraudeCard.ReadOnly = true;
+            this.txtPlayerEmeraudeCard.Size = new System.Drawing.Size(102, 98);
+            this.txtPlayerEmeraudeCard.TabIndex = 58;
+            // 
+            // txtPlayerDiamandCard
+            // 
+            this.txtPlayerDiamandCard.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtPlayerDiamandCard.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtPlayerDiamandCard.Location = new System.Drawing.Point(435, 3);
+            this.txtPlayerDiamandCard.Multiline = true;
+            this.txtPlayerDiamandCard.Name = "txtPlayerDiamandCard";
+            this.txtPlayerDiamandCard.ReadOnly = true;
+            this.txtPlayerDiamandCard.Size = new System.Drawing.Size(102, 98);
+            this.txtPlayerDiamandCard.TabIndex = 59;
+            // 
             // txtNoble4
             // 
             this.txtNoble4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtNoble4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtNoble4.Location = new System.Drawing.Point(3, 3);
+            this.txtNoble4.Multiline = true;
             this.txtNoble4.Name = "txtNoble4";
             this.txtNoble4.ReadOnly = true;
             this.txtNoble4.Size = new System.Drawing.Size(102, 98);
             this.txtNoble4.TabIndex = 54;
-            this.txtNoble4.Text = "";
             this.txtNoble4.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtNoble3
             // 
             this.txtNoble3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtNoble3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtNoble3.Location = new System.Drawing.Point(111, 3);
+            this.txtNoble3.Multiline = true;
             this.txtNoble3.Name = "txtNoble3";
             this.txtNoble3.ReadOnly = true;
             this.txtNoble3.Size = new System.Drawing.Size(102, 98);
             this.txtNoble3.TabIndex = 55;
-            this.txtNoble3.Text = "";
             this.txtNoble3.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtNoble2
             // 
             this.txtNoble2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtNoble2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtNoble2.Location = new System.Drawing.Point(219, 3);
+            this.txtNoble2.Multiline = true;
             this.txtNoble2.Name = "txtNoble2";
             this.txtNoble2.ReadOnly = true;
             this.txtNoble2.Size = new System.Drawing.Size(102, 98);
             this.txtNoble2.TabIndex = 56;
-            this.txtNoble2.Text = "";
             this.txtNoble2.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtNoble1
             // 
             this.txtNoble1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtNoble1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtNoble1.Location = new System.Drawing.Point(327, 3);
+            this.txtNoble1.Multiline = true;
             this.txtNoble1.Name = "txtNoble1";
             this.txtNoble1.ReadOnly = true;
             this.txtNoble1.Size = new System.Drawing.Size(102, 98);
             this.txtNoble1.TabIndex = 57;
-            this.txtNoble1.Text = "";
             this.txtNoble1.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel34
             // 
             this.txtLevel34.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel34.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel34.Location = new System.Drawing.Point(3, 3);
+            this.txtLevel34.Multiline = true;
             this.txtLevel34.Name = "txtLevel34";
             this.txtLevel34.ReadOnly = true;
             this.txtLevel34.Size = new System.Drawing.Size(102, 98);
             this.txtLevel34.TabIndex = 53;
-            this.txtLevel34.Text = "";
             this.txtLevel34.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel33
             // 
             this.txtLevel33.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel33.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel33.Location = new System.Drawing.Point(111, 3);
+            this.txtLevel33.Multiline = true;
             this.txtLevel33.Name = "txtLevel33";
             this.txtLevel33.ReadOnly = true;
             this.txtLevel33.Size = new System.Drawing.Size(102, 98);
             this.txtLevel33.TabIndex = 54;
-            this.txtLevel33.Text = "";
             this.txtLevel33.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel32
             // 
             this.txtLevel32.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel32.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel32.Location = new System.Drawing.Point(219, 3);
+            this.txtLevel32.Multiline = true;
             this.txtLevel32.Name = "txtLevel32";
             this.txtLevel32.ReadOnly = true;
             this.txtLevel32.Size = new System.Drawing.Size(102, 98);
             this.txtLevel32.TabIndex = 55;
-            this.txtLevel32.Text = "";
             this.txtLevel32.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel31
             // 
             this.txtLevel31.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel31.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel31.Location = new System.Drawing.Point(327, 3);
+            this.txtLevel31.Multiline = true;
             this.txtLevel31.Name = "txtLevel31";
             this.txtLevel31.ReadOnly = true;
             this.txtLevel31.Size = new System.Drawing.Size(102, 98);
             this.txtLevel31.TabIndex = 56;
-            this.txtLevel31.Text = "";
             this.txtLevel31.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel24
             // 
             this.txtLevel24.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel24.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel24.Location = new System.Drawing.Point(3, 3);
+            this.txtLevel24.Multiline = true;
             this.txtLevel24.Name = "txtLevel24";
             this.txtLevel24.ReadOnly = true;
             this.txtLevel24.Size = new System.Drawing.Size(102, 98);
             this.txtLevel24.TabIndex = 52;
-            this.txtLevel24.Text = "";
             this.txtLevel24.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel23
             // 
             this.txtLevel23.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel23.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel23.Location = new System.Drawing.Point(111, 3);
+            this.txtLevel23.Multiline = true;
             this.txtLevel23.Name = "txtLevel23";
             this.txtLevel23.ReadOnly = true;
             this.txtLevel23.Size = new System.Drawing.Size(102, 98);
             this.txtLevel23.TabIndex = 53;
-            this.txtLevel23.Text = "";
             this.txtLevel23.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel22
             // 
             this.txtLevel22.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel22.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel22.Location = new System.Drawing.Point(219, 3);
+            this.txtLevel22.Multiline = true;
             this.txtLevel22.Name = "txtLevel22";
             this.txtLevel22.ReadOnly = true;
             this.txtLevel22.Size = new System.Drawing.Size(102, 98);
             this.txtLevel22.TabIndex = 54;
-            this.txtLevel22.Text = "";
             this.txtLevel22.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel21
             // 
             this.txtLevel21.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel21.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel21.Location = new System.Drawing.Point(327, 3);
+            this.txtLevel21.Multiline = true;
             this.txtLevel21.Name = "txtLevel21";
             this.txtLevel21.ReadOnly = true;
             this.txtLevel21.Size = new System.Drawing.Size(102, 98);
             this.txtLevel21.TabIndex = 55;
-            this.txtLevel21.Text = "";
             this.txtLevel21.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel14
             // 
             this.txtLevel14.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel14.Location = new System.Drawing.Point(3, 3);
+            this.txtLevel14.Multiline = true;
             this.txtLevel14.Name = "txtLevel14";
             this.txtLevel14.ReadOnly = true;
             this.txtLevel14.Size = new System.Drawing.Size(102, 98);
             this.txtLevel14.TabIndex = 51;
-            this.txtLevel14.Text = "";
             this.txtLevel14.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel13
             // 
             this.txtLevel13.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel13.Location = new System.Drawing.Point(111, 3);
+            this.txtLevel13.Multiline = true;
             this.txtLevel13.Name = "txtLevel13";
             this.txtLevel13.ReadOnly = true;
             this.txtLevel13.Size = new System.Drawing.Size(102, 98);
             this.txtLevel13.TabIndex = 52;
-            this.txtLevel13.Text = "";
             this.txtLevel13.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel12
             // 
             this.txtLevel12.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel12.Location = new System.Drawing.Point(219, 3);
+            this.txtLevel12.Multiline = true;
             this.txtLevel12.Name = "txtLevel12";
             this.txtLevel12.ReadOnly = true;
             this.txtLevel12.Size = new System.Drawing.Size(102, 98);
             this.txtLevel12.TabIndex = 53;
-            this.txtLevel12.Text = "";
             this.txtLevel12.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // txtLevel11
             // 
             this.txtLevel11.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtLevel11.Location = new System.Drawing.Point(327, 3);
+            this.txtLevel11.Multiline = true;
             this.txtLevel11.Name = "txtLevel11";
             this.txtLevel11.ReadOnly = true;
             this.txtLevel11.Size = new System.Drawing.Size(102, 98);
             this.txtLevel11.TabIndex = 54;
-            this.txtLevel11.Text = "";
             this.txtLevel11.Click += new System.EventHandler(this.txtCards_Click);
             // 
             // frmSplendor
@@ -654,6 +741,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 763);
+            this.Controls.Add(this.numCardDiamand);
+            this.Controls.Add(this.numCardEmeraude);
+            this.Controls.Add(this.numCardOnyx);
+            this.Controls.Add(this.numCardSaphir);
+            this.Controls.Add(this.flwPalyerCards);
+            this.Controls.Add(this.numCardRubis);
             this.Controls.Add(this.flwCardNoble);
             this.Controls.Add(this.flwCardLevel3);
             this.Controls.Add(this.flwCardLevel2);
@@ -668,12 +761,7 @@
             this.Controls.Add(this.lblChoiceOnyx);
             this.Controls.Add(this.lblChoiceSaphir);
             this.Controls.Add(this.lblChoiceRubis);
-            this.Controls.Add(this.txtPlayerDiamandCard);
             this.Controls.Add(this.txtPlayerBookedCard);
-            this.Controls.Add(this.txtPlayerEmeraudeCard);
-            this.Controls.Add(this.txtPlayerOnyxCard);
-            this.Controls.Add(this.txtPlayerSaphirCard);
-            this.Controls.Add(this.txtPlayerRubisCard);
             this.Controls.Add(this.lblPlayerDiamandCoin);
             this.Controls.Add(this.lblPlayerEmeraudeCoin);
             this.Controls.Add(this.lblPlayerOnyxCoin);
@@ -694,9 +782,20 @@
             this.Load += new System.EventHandler(this.frmSplendor_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmSplendor_Paint);
             this.flwCardLevel1.ResumeLayout(false);
+            this.flwCardLevel1.PerformLayout();
             this.flwCardLevel2.ResumeLayout(false);
+            this.flwCardLevel2.PerformLayout();
             this.flwCardLevel3.ResumeLayout(false);
+            this.flwCardLevel3.PerformLayout();
             this.flwCardNoble.ResumeLayout(false);
+            this.flwCardNoble.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardRubis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardSaphir)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardOnyx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardEmeraude)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCardDiamand)).EndInit();
+            this.flwPalyerCards.ResumeLayout(false);
+            this.flwPalyerCards.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -712,10 +811,6 @@
         private System.Windows.Forms.Label lblDiamandCoin;
         private System.Windows.Forms.Button cmdInsertPlayer;
         private System.Windows.Forms.Button cmdPlay;
-        private System.Windows.Forms.TextBox txtPlayerEmeraudeCard;
-        private System.Windows.Forms.TextBox txtPlayerOnyxCard;
-        private System.Windows.Forms.TextBox txtPlayerSaphirCard;
-        private System.Windows.Forms.TextBox txtPlayerRubisCard;
         private System.Windows.Forms.Label lblPlayerDiamandCoin;
         private System.Windows.Forms.Label lblPlayerEmeraudeCoin;
         private System.Windows.Forms.Label lblPlayerOnyxCoin;
@@ -723,7 +818,6 @@
         private System.Windows.Forms.Label lblPlayerRubisCoin;
         private System.Windows.Forms.Label lblPlayerGoldCoin;
         private System.Windows.Forms.TextBox txtPlayerBookedCard;
-        private System.Windows.Forms.TextBox txtPlayerDiamandCard;
         private System.Windows.Forms.Label lblChoiceRubis;
         private System.Windows.Forms.Label lblChoiceSaphir;
         private System.Windows.Forms.Label lblChoiceOnyx;
@@ -754,6 +848,17 @@
         private CardText txtNoble3;
         private CardText txtNoble2;
         private CardText txtNoble1;
+        private CardText txtPlayerRubisCard;
+        private CardText txtPlayerSaphirCard;
+        private CardText txtPlayerOnyxCard;
+        private CardText txtPlayerEmeraudeCard;
+        private CardText txtPlayerDiamandCard;
+        private System.Windows.Forms.NumericUpDown numCardRubis;
+        private System.Windows.Forms.NumericUpDown numCardSaphir;
+        private System.Windows.Forms.NumericUpDown numCardOnyx;
+        private System.Windows.Forms.NumericUpDown numCardEmeraude;
+        private System.Windows.Forms.NumericUpDown numCardDiamand;
+        private System.Windows.Forms.FlowLayoutPanel flwPalyerCards;
     }
 }
 
