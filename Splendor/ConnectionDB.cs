@@ -158,7 +158,14 @@ namespace Splendor
                 player.Name = name;
                 player.Id = id;
                 player.Ressources = new int[] { 0, 0, 0, 0, 0 };
-                player.Coins = new int[] { 0, 0, 0, 0, 0 };
+                player.Coins = new Dictionary<Ressources, int>()
+                {
+                    {Ressources.Diamand, 0},
+                    {Ressources.Onyx, 0},
+                    {Ressources.Rubis, 0},
+                    {Ressources.Saphir, 0},
+                    {Ressources.Emeraude, 0}
+                };
                 player.Cards = new List<Card>();
 
                 players.Add(player);

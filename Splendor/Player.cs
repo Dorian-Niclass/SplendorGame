@@ -35,5 +35,14 @@ namespace Splendor
 
         public List<Card> Cards { get; set; }
 
+        public int GetPrestige()
+        {
+            int prestigePt = 0;
+
+            Cards.ForEach(x => prestigePt += x.PrestigePt);
+
+            return prestigePt;
+        }
+
     }
 }

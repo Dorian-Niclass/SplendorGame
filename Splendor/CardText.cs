@@ -73,15 +73,6 @@ namespace Splendor
             this.costTxt.Click += new EventHandler(childControl_Click);
             this.costTxt.Cursor = Cursors.Hand;
             this.Controls.Add(costTxt);
-
-
-            /*switch (row)
-            {
-                case 0: this.BackColor = Color.FromArgb(255, 100, 210, 44); break;
-                case 1: this.BackColor = Color.FromArgb(255, 255, 52, 52); break;
-                case 2: this.BackColor = Color.FromArgb(255, 80, 115, 255); break;
-                case 3: this.BackColor = Color.Brown; break;
-            }*/
         }
 
         private void childControl_Click(object sender, EventArgs e)
