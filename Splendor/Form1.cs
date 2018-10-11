@@ -720,8 +720,6 @@ namespace Splendor
                     cardText.Refresh();
                 }
             }
-
-           
         }
 
         private void DrawCoins()
@@ -763,35 +761,73 @@ namespace Splendor
                         break;
                     }
                 }
-                DialogResult result = MessageBox.Show("Voulez-vous acheter cette carte ?", "Acheter", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (canBuy && result == DialogResult.OK)
+
+                if (canBuy)
                 {
-                    players[currentPlayerId].Cards.Add(card);
+                    DialogResult result = MessageBox.Show("Voulez-vous acheter cette carte ?", "Acheter", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    int cardRow = 0;
-                    int cardCol = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 1, 1));
+                    if (result == DialogResult.Yes)
+                     {
+                        players[currentPlayerId].Cards.Add(card);
 
-                    if (txtCard.Name.Contains("Noble"))
-                    {
-                        cardRow = 4;
+                        foreach (Ressources ress in card.Cost.Keys)
+                        {
+                            players[currentPlayerId].Coins[ress] -= card.Cost[ress];
+
+                            switch (ress)
+                            {
+                                case Ressources.Rubis:
+                                    nbRubis += card.Cost[ress];
+                                    lblRubisCoin.Text = nbRubis.ToString();
+                                    break;
+                                case Ressources.Saphir:
+                                    nbSaphir += card.Cost[ress];
+                                    lblSaphirCoin.Text = nbSaphir.ToString();
+                                    break;
+                                case Ressources.Onyx:
+                                    nbOnyx += card.Cost[ress];
+                                    lblOnyxCoin.Text = nbOnyx.ToString();
+                                    break;
+                                case Ressources.Emeraude:
+                                    nbEmeraude += card.Cost[ress];
+                                    lblEmeraudeCoin.Text = nbEmeraude.ToString();
+                                    break;
+                                case Ressources.Diamand:
+                                    nbDiamand += card.Cost[ress];
+                                    lblDiamandCoin.Text = nbDiamand.ToString();
+                                    break;
+                            }
+                        }
+
+                        int cardRow = 0;
+                        int cardCol = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 1, 1));
+
+                        if (txtCard.Name.Contains("Noble"))
+                        {
+                            cardRow = 4;
+                        }
+                        else
+                        {
+                            cardRow = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 2, 1));
+                        }
+
+                        cardsOnTable[cardRow - 1, cardCol - 1] = null;
+                        txtCard.SetCard(null);
+
+                        if (cardRow != 4)
+                        {
+                            txtCard.SetCard(PickNewCard(cardRow - 1, cardCol - 1));
+                        }
+
+                        enableClicLabel = false;
+                        cmdValidateChoice.Enabled = true;
+
+                        DrawCards();
                     }
-                    else
-                    {
-                        cardRow = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 2, 1));
-                    }
-
-                    cardsOnTable[cardRow - 1, cardCol - 1] = null;
-                    txtCard.SetCard(null);
-
-                    if (cardRow != 4)
-                    {
-                        txtCard.SetCard(PickNewCard(cardRow - 1, cardCol - 1));
-                    }
-
-                    enableClicLabel = false;
-                    cmdValidateChoice.Enabled = true;
-
-                    DrawCards();
+                }
+                else
+                {
+                    MessageBox.Show("Vous n'avez pas assez de ressources pour acheter cette carte.", "Acheter", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -801,10 +837,10 @@ namespace Splendor
             if (players != null)
             {
                 try { txtPlayerRubisCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Rubis).ToList()[(int)numCardRubis.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
-                try { txtPlayerSaphirCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Saphir).ToList()[(int)numCardSaphir.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
-                try { txtPlayerOnyxCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Onyx).ToList()[(int)numCardOnyx.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
-                try { txtPlayerEmeraudeCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Emeraude).ToList()[(int)numCardEmeraude.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
-                try { txtPlayerDiamandCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Diamand).ToList()[(int)numCardDiamand.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
+                try { txtPlayerSaphirCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Saphir).ToList()[(int)numCardSaphir.Value]); } catch { txtPlayerSaphirCard.SetCard(null); }
+                try { txtPlayerOnyxCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Onyx).ToList()[(int)numCardOnyx.Value]); } catch { txtPlayerOnyxCard.SetCard(null); }
+                try { txtPlayerEmeraudeCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Emeraude).ToList()[(int)numCardEmeraude.Value]); } catch { txtPlayerEmeraudeCard.SetCard(null); }
+                try { txtPlayerDiamandCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Diamand).ToList()[(int)numCardDiamand.Value]); } catch { txtPlayerDiamandCard.SetCard(null); }
             }
         }
 
