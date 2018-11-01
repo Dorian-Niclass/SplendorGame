@@ -56,6 +56,8 @@ namespace Splendor
 
         private List<Player> players;
 
+        private AddPlayerForm addPlayerForm = new AddPlayerForm();
+
         /// <summary>
         /// constructor
         /// </summary>
@@ -113,9 +115,6 @@ namespace Splendor
             cardsOnTable[2,1] = level2Cards.Pop();
             cardsOnTable[3,1] = level3Cards.Pop();*/
 
-
-            //load cards from the database
-            Stack<Card> listCardOne = conn.GetListCardAccordingToLevel(1);
             //Go through the results
             //Don't forget to check when you are at the end of the stack
             
@@ -663,7 +662,11 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdInsertPlayer_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("A implémenter");
+            if (!addPlayerForm.Visible)
+            {
+                addPlayerForm = new AddPlayerForm();
+                addPlayerForm.Show();
+            }
         }
 
         /// <summary>

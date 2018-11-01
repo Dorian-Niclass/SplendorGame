@@ -1,0 +1,85 @@
+﻿namespace Splendor
+{
+    partial class AddPlayerForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.lstPlayer = new System.Windows.Forms.ListBox();
+            this.txtAddPlayer = new System.Windows.Forms.TextBox();
+            this.cmdRemovePlayer = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // lstPlayer
+            // 
+            this.lstPlayer.FormattingEnabled = true;
+            this.lstPlayer.Location = new System.Drawing.Point(12, 12);
+            this.lstPlayer.Name = "lstPlayer";
+            this.lstPlayer.Size = new System.Drawing.Size(271, 238);
+            this.lstPlayer.TabIndex = 0;
+            this.lstPlayer.SelectedIndexChanged += new System.EventHandler(this.lstPlayer_SelectedIndexChanged);
+            // 
+            // txtAddPlayer
+            // 
+            this.txtAddPlayer.Location = new System.Drawing.Point(12, 256);
+            this.txtAddPlayer.Name = "txtAddPlayer";
+            this.txtAddPlayer.Size = new System.Drawing.Size(175, 20);
+            this.txtAddPlayer.TabIndex = 1;
+            this.txtAddPlayer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAddPlayer_KeyDown);
+            // 
+            // cmdRemovePlayer
+            // 
+            this.cmdRemovePlayer.Enabled = false;
+            this.cmdRemovePlayer.Location = new System.Drawing.Point(193, 256);
+            this.cmdRemovePlayer.Name = "cmdRemovePlayer";
+            this.cmdRemovePlayer.Size = new System.Drawing.Size(90, 20);
+            this.cmdRemovePlayer.TabIndex = 2;
+            this.cmdRemovePlayer.Text = "Remove";
+            this.cmdRemovePlayer.UseVisualStyleBackColor = true;
+            this.cmdRemovePlayer.Click += new System.EventHandler(this.cmdRemovePlayer_Click);
+            // 
+            // AddPlayerForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(295, 292);
+            this.Controls.Add(this.cmdRemovePlayer);
+            this.Controls.Add(this.txtAddPlayer);
+            this.Controls.Add(this.lstPlayer);
+            this.Name = "AddPlayerForm";
+            this.Text = "AddPlayerForm";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ListBox lstPlayer;
+        private System.Windows.Forms.TextBox txtAddPlayer;
+        private System.Windows.Forms.Button cmdRemovePlayer;
+    }
+}
