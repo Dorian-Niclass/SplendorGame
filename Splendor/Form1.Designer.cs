@@ -759,7 +759,7 @@
             this.txtNoble4.ReadOnly = true;
             this.txtNoble4.Size = new System.Drawing.Size(102, 98);
             this.txtNoble4.TabIndex = 54;
-            this.txtNoble4.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtNoble4.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtNoble3
             // 
@@ -771,7 +771,7 @@
             this.txtNoble3.ReadOnly = true;
             this.txtNoble3.Size = new System.Drawing.Size(102, 98);
             this.txtNoble3.TabIndex = 55;
-            this.txtNoble3.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtNoble3.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtNoble2
             // 
@@ -783,7 +783,7 @@
             this.txtNoble2.ReadOnly = true;
             this.txtNoble2.Size = new System.Drawing.Size(102, 98);
             this.txtNoble2.TabIndex = 56;
-            this.txtNoble2.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtNoble2.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtNoble1
             // 
@@ -795,7 +795,7 @@
             this.txtNoble1.ReadOnly = true;
             this.txtNoble1.Size = new System.Drawing.Size(102, 98);
             this.txtNoble1.TabIndex = 57;
-            this.txtNoble1.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtNoble1.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel34
             // 
@@ -807,7 +807,7 @@
             this.txtLevel34.ReadOnly = true;
             this.txtLevel34.Size = new System.Drawing.Size(102, 98);
             this.txtLevel34.TabIndex = 53;
-            this.txtLevel34.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel34.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel33
             // 
@@ -819,7 +819,7 @@
             this.txtLevel33.ReadOnly = true;
             this.txtLevel33.Size = new System.Drawing.Size(102, 98);
             this.txtLevel33.TabIndex = 54;
-            this.txtLevel33.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel33.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel32
             // 
@@ -831,7 +831,7 @@
             this.txtLevel32.ReadOnly = true;
             this.txtLevel32.Size = new System.Drawing.Size(102, 98);
             this.txtLevel32.TabIndex = 55;
-            this.txtLevel32.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel32.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel31
             // 
@@ -843,7 +843,7 @@
             this.txtLevel31.ReadOnly = true;
             this.txtLevel31.Size = new System.Drawing.Size(102, 98);
             this.txtLevel31.TabIndex = 56;
-            this.txtLevel31.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel31.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel24
             // 
@@ -855,7 +855,7 @@
             this.txtLevel24.ReadOnly = true;
             this.txtLevel24.Size = new System.Drawing.Size(102, 98);
             this.txtLevel24.TabIndex = 52;
-            this.txtLevel24.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel24.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel23
             // 
@@ -867,7 +867,7 @@
             this.txtLevel23.ReadOnly = true;
             this.txtLevel23.Size = new System.Drawing.Size(102, 98);
             this.txtLevel23.TabIndex = 53;
-            this.txtLevel23.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel23.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel22
             // 
@@ -879,7 +879,7 @@
             this.txtLevel22.ReadOnly = true;
             this.txtLevel22.Size = new System.Drawing.Size(102, 98);
             this.txtLevel22.TabIndex = 54;
-            this.txtLevel22.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel22.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel21
             // 
@@ -891,7 +891,7 @@
             this.txtLevel21.ReadOnly = true;
             this.txtLevel21.Size = new System.Drawing.Size(102, 98);
             this.txtLevel21.TabIndex = 55;
-            this.txtLevel21.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel21.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel14
             // 
@@ -903,7 +903,7 @@
             this.txtLevel14.ReadOnly = true;
             this.txtLevel14.Size = new System.Drawing.Size(102, 98);
             this.txtLevel14.TabIndex = 51;
-            this.txtLevel14.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel14.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel13
             // 
@@ -915,7 +915,7 @@
             this.txtLevel13.ReadOnly = true;
             this.txtLevel13.Size = new System.Drawing.Size(102, 98);
             this.txtLevel13.TabIndex = 52;
-            this.txtLevel13.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel13.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel12
             // 
@@ -927,7 +927,7 @@
             this.txtLevel12.ReadOnly = true;
             this.txtLevel12.Size = new System.Drawing.Size(102, 98);
             this.txtLevel12.TabIndex = 53;
-            this.txtLevel12.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel12.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // txtLevel11
             // 
@@ -939,7 +939,7 @@
             this.txtLevel11.ReadOnly = true;
             this.txtLevel11.Size = new System.Drawing.Size(102, 98);
             this.txtLevel11.TabIndex = 54;
-            this.txtLevel11.Click += new System.EventHandler(this.txtCards_Click);
+            this.txtLevel11.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // frmSplendor
             // 
