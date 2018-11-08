@@ -838,7 +838,6 @@
             this.Name = "frmSplendor";
             this.Text = "Splendor";
             this.Load += new System.EventHandler(this.frmSplendor_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmSplendor_Paint);
             this.flwCardLevel1.ResumeLayout(false);
             this.flwCardLevel1.PerformLayout();
             this.flwCardLevel2.ResumeLayout(false);

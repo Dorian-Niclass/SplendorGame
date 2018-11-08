@@ -188,10 +188,7 @@ namespace Splendor
 
             enableClicLabel = true;
 
-            string name = conn.GetPlayerName(currentPlayerId);
-
             //no coins selected
-
             choosedCoins = new int[] { 0, 0, 0, 0, 0 };
 
             //no coins or card selected yet, labels are empty
@@ -443,16 +440,6 @@ namespace Splendor
         }
 
         /// <summary>
-        /// Everytime the form is paint
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmSplendor_Paint(object sender, PaintEventArgs e)
-        {
-            //DrawCards();
-        }
-
-        /// <summary>
         /// Draw the cards on the board
         /// </summary>
         private void DrawCards()
@@ -550,7 +537,7 @@ namespace Splendor
 
         private void RefreshPlayerCards()
         {
-            if (players != null)
+            if (players.Count != 0)
             {
                 List<Card> rubisCard = players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Rubis).ToList();
                 List<Card> saphirCard = players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Saphir).ToList();
