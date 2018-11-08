@@ -43,7 +43,9 @@ namespace Splendor
         //id of the player that is playing
         private int currentPlayerId;
         //boolean to enable us to know if the user can click on a coin or a card
-        private bool enableClicLabel;
+        private bool enableClicLabel = false;
+        //boolean to enable us to know if the user can click on button play
+        public bool enableClicPlay = false;
         //connection to the database
         private ConnectionDB conn;
 
@@ -168,15 +170,16 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdPlay_Click(object sender, EventArgs e)
         {
-            this.Width = 680;
-            this.Height = 800;
+            if (enableClicPlay)
+            {
+                cmdInsertPlayer.Enabled = false;
+                this.Width = 680;
+                this.Height = 800;
 
-            int id = 0;
-
-            players = conn.GetPlayers();
-
-            LoadPlayer(0);
-
+                LoadPlayer(0);
+            }
+            else
+                MessageBox.Show("Vous devez inserer entre deux et quatre joueurs pour pouvoir jouer.");
         }
 
 

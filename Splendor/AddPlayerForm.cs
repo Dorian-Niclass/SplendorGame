@@ -20,9 +20,7 @@ namespace Splendor
             InitializeComponent();
 
             foreach (Player player in frmSplendor.players)
-            {
-                lstPlayer.Items.Add(player.Name);
-            }            
+                lstPlayer.Items.Add(player.Name);  
         }
 
         /// <summary>
@@ -73,7 +71,6 @@ namespace Splendor
 
         private void cmdFinish_Click(object sender, EventArgs e)
         {
-
             if (lstPlayer.Items.Count >= 2 && lstPlayer.Items.Count <= 4)
             {
                 frmSplendor.players.Clear();
@@ -81,23 +78,28 @@ namespace Splendor
                 foreach (string item in lstPlayer.Items)
                 {
                     Player player = new Player();
+
                     player.Name = item;
+                    player.Ressources = new int[] { 0, 0, 0, 0, 0 };
+                    player.Coins = new Dictionary<Ressources, int>()
+                    {
+                        {Ressources.Diamand, 0},
+                        {Ressources.Onyx, 0},
+                        {Ressources.Rubis, 0},
+                        {Ressources.Saphir, 0},
+                        {Ressources.Emeraude, 0}
+                    };
+                    player.Cards = new List<Card>();
+
                     frmSplendor.players.Add(player);
                 }
 
-                foreach (Player player in frmSplendor.players)
-                {
-                    Console.WriteLine(player.Name);
-                }
+                frmSplendor.enableClicPlay = true;
 
                 Form.ActiveForm.Close();
             }
             else
-            {
                 MessageBox.Show("Vous devez inserer entre deux et quatre joueurs.");
-            }
-
-
         }
     }
 }
