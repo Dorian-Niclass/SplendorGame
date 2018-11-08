@@ -126,7 +126,6 @@ namespace Splendor
                 }
             }
 
-            PutCardsOnTable();
         }
 
         /// <summary>
@@ -173,6 +172,7 @@ namespace Splendor
                 this.Height = 800;
 
                 LoadPlayer(0);
+                PutCardsOnTable();
             }
             else
                 MessageBox.Show("Vous devez inserer entre deux et quatre joueurs pour pouvoir jouer.");
@@ -311,10 +311,29 @@ namespace Splendor
                     case 1:
                         if (choosedCoins.Sum() < 2)
                         {
-                            if (choosedCoins[(int)ressource] < 2)
+                            if (choosedCoins[(int)ressource] == 0)
+                            {  
+                                if (coins[(int)ressource] > 0)
+                                {
+                                    choosedCoins[(int)ressource] += 1;
+                                    coins[(int)ressource] -= 1;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Il n'y a plus de ce jeton");
+                                }
+
+                            }else if (choosedCoins[(int)ressource] == 1)
                             {
-                                choosedCoins[(int)ressource] += 1;
-                                coins[(int)ressource] -= 1;
+                                if (coins[(int)ressource] > 2)
+                                {
+                                    choosedCoins[(int)ressource] += 1;
+                                    coins[(int)ressource] -= 1;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Vous ne pouvez pas prendre deux même jetons si il en reste 3 ou moins");
+                                }
                             }
                         }
                         else if(choosedCoins[(int)ressource] != 0)
@@ -332,8 +351,16 @@ namespace Splendor
 
                         if (choosedCoins[(int)ressource] == 0)
                         {
-                            choosedCoins[(int)ressource] += 1;
-                            coins[(int)ressource] -= 1;
+                            if (coins[(int)ressource] > 0)
+                            {
+                                choosedCoins[(int)ressource] += 1;
+                                coins[(int)ressource] -= 1;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Il n'y a plus de ce jeton");
+                            }
+
                         }
                         else MessageBox.Show("Vous ne pouvez pas prendre ce jeton.");
                         break;

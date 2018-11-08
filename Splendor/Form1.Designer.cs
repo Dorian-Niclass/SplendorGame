@@ -54,38 +54,38 @@
             this.lblChoiceCard = new System.Windows.Forms.Label();
             this.lblNbPtPrestige = new System.Windows.Forms.Label();
             this.flwCardLevel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtLevel12 = new Splendor.CardText();
+            this.txtLevel11 = new Splendor.CardText();
+            this.txtLevel13 = new Splendor.CardText();
+            this.txtLevel14 = new Splendor.CardText();
             this.flwCardLevel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtLevel24 = new Splendor.CardText();
+            this.txtLevel23 = new Splendor.CardText();
+            this.txtLevel22 = new Splendor.CardText();
+            this.txtLevel21 = new Splendor.CardText();
             this.flwCardLevel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtLevel34 = new Splendor.CardText();
+            this.txtLevel33 = new Splendor.CardText();
+            this.txtLevel32 = new Splendor.CardText();
+            this.txtLevel31 = new Splendor.CardText();
             this.flwCardNoble = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtNoble4 = new Splendor.CardText();
+            this.txtNoble3 = new Splendor.CardText();
+            this.txtNoble2 = new Splendor.CardText();
+            this.txtNoble1 = new Splendor.CardText();
             this.numCardRubis = new System.Windows.Forms.NumericUpDown();
             this.numCardSaphir = new System.Windows.Forms.NumericUpDown();
             this.numCardOnyx = new System.Windows.Forms.NumericUpDown();
             this.numCardEmeraude = new System.Windows.Forms.NumericUpDown();
             this.numCardDiamand = new System.Windows.Forms.NumericUpDown();
             this.flwPalyerCards = new System.Windows.Forms.FlowLayoutPanel();
-            this.numCardNoble = new System.Windows.Forms.NumericUpDown();
             this.txtPlayerRubisCard = new Splendor.CardText();
             this.txtPlayerSaphirCard = new Splendor.CardText();
             this.txtPlayerOnyxCard = new Splendor.CardText();
             this.txtPlayerEmeraudeCard = new Splendor.CardText();
             this.txtPlayerDiamandCard = new Splendor.CardText();
             this.txtPlayerNobleCard = new Splendor.CardText();
-            this.txtNoble4 = new Splendor.CardText();
-            this.txtNoble3 = new Splendor.CardText();
-            this.txtNoble2 = new Splendor.CardText();
-            this.txtNoble1 = new Splendor.CardText();
-            this.txtLevel34 = new Splendor.CardText();
-            this.txtLevel33 = new Splendor.CardText();
-            this.txtLevel32 = new Splendor.CardText();
-            this.txtLevel31 = new Splendor.CardText();
-            this.txtLevel24 = new Splendor.CardText();
-            this.txtLevel23 = new Splendor.CardText();
-            this.txtLevel22 = new Splendor.CardText();
-            this.txtLevel21 = new Splendor.CardText();
-            this.txtLevel12 = new Splendor.CardText();
-            this.txtLevel11 = new Splendor.CardText();
-            this.txtLevel13 = new Splendor.CardText();
-            this.txtLevel14 = new Splendor.CardText();
+            this.numCardNoble = new System.Windows.Forms.NumericUpDown();
             this.flwCardLevel1.SuspendLayout();
             this.flwCardLevel2.SuspendLayout();
             this.flwCardLevel3.SuspendLayout();
@@ -408,6 +408,58 @@
             this.flwCardLevel1.Size = new System.Drawing.Size(452, 107);
             this.flwCardLevel1.TabIndex = 47;
             // 
+            // txtLevel12
+            // 
+            this.txtLevel12.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel12.Location = new System.Drawing.Point(2, 2);
+            this.txtLevel12.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel12.Multiline = true;
+            this.txtLevel12.Name = "txtLevel12";
+            this.txtLevel12.ReadOnly = true;
+            this.txtLevel12.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel12.TabIndex = 53;
+            this.txtLevel12.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtLevel11
+            // 
+            this.txtLevel11.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel11.Location = new System.Drawing.Point(108, 2);
+            this.txtLevel11.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel11.Multiline = true;
+            this.txtLevel11.Name = "txtLevel11";
+            this.txtLevel11.ReadOnly = true;
+            this.txtLevel11.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel11.TabIndex = 54;
+            this.txtLevel11.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtLevel13
+            // 
+            this.txtLevel13.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel13.Location = new System.Drawing.Point(214, 2);
+            this.txtLevel13.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel13.Multiline = true;
+            this.txtLevel13.Name = "txtLevel13";
+            this.txtLevel13.ReadOnly = true;
+            this.txtLevel13.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel13.TabIndex = 52;
+            this.txtLevel13.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtLevel14
+            // 
+            this.txtLevel14.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel14.Location = new System.Drawing.Point(320, 2);
+            this.txtLevel14.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel14.Multiline = true;
+            this.txtLevel14.Name = "txtLevel14";
+            this.txtLevel14.ReadOnly = true;
+            this.txtLevel14.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel14.TabIndex = 51;
+            this.txtLevel14.Click += new System.EventHandler(this.ClickOnCard);
+            // 
             // flwCardLevel2
             // 
             this.flwCardLevel2.Controls.Add(this.txtLevel24);
@@ -419,6 +471,58 @@
             this.flwCardLevel2.Name = "flwCardLevel2";
             this.flwCardLevel2.Size = new System.Drawing.Size(452, 117);
             this.flwCardLevel2.TabIndex = 48;
+            // 
+            // txtLevel24
+            // 
+            this.txtLevel24.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel24.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel24.Location = new System.Drawing.Point(2, 2);
+            this.txtLevel24.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel24.Multiline = true;
+            this.txtLevel24.Name = "txtLevel24";
+            this.txtLevel24.ReadOnly = true;
+            this.txtLevel24.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel24.TabIndex = 52;
+            this.txtLevel24.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtLevel23
+            // 
+            this.txtLevel23.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel23.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel23.Location = new System.Drawing.Point(108, 2);
+            this.txtLevel23.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel23.Multiline = true;
+            this.txtLevel23.Name = "txtLevel23";
+            this.txtLevel23.ReadOnly = true;
+            this.txtLevel23.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel23.TabIndex = 53;
+            this.txtLevel23.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtLevel22
+            // 
+            this.txtLevel22.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel22.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel22.Location = new System.Drawing.Point(214, 2);
+            this.txtLevel22.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel22.Multiline = true;
+            this.txtLevel22.Name = "txtLevel22";
+            this.txtLevel22.ReadOnly = true;
+            this.txtLevel22.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel22.TabIndex = 54;
+            this.txtLevel22.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtLevel21
+            // 
+            this.txtLevel21.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel21.Location = new System.Drawing.Point(320, 2);
+            this.txtLevel21.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel21.Multiline = true;
+            this.txtLevel21.Name = "txtLevel21";
+            this.txtLevel21.ReadOnly = true;
+            this.txtLevel21.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel21.TabIndex = 55;
+            this.txtLevel21.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // flwCardLevel3
             // 
@@ -432,6 +536,58 @@
             this.flwCardLevel3.Size = new System.Drawing.Size(452, 111);
             this.flwCardLevel3.TabIndex = 49;
             // 
+            // txtLevel34
+            // 
+            this.txtLevel34.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel34.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel34.Location = new System.Drawing.Point(2, 2);
+            this.txtLevel34.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel34.Multiline = true;
+            this.txtLevel34.Name = "txtLevel34";
+            this.txtLevel34.ReadOnly = true;
+            this.txtLevel34.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel34.TabIndex = 53;
+            this.txtLevel34.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtLevel33
+            // 
+            this.txtLevel33.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel33.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel33.Location = new System.Drawing.Point(108, 2);
+            this.txtLevel33.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel33.Multiline = true;
+            this.txtLevel33.Name = "txtLevel33";
+            this.txtLevel33.ReadOnly = true;
+            this.txtLevel33.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel33.TabIndex = 54;
+            this.txtLevel33.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtLevel32
+            // 
+            this.txtLevel32.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel32.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel32.Location = new System.Drawing.Point(214, 2);
+            this.txtLevel32.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel32.Multiline = true;
+            this.txtLevel32.Name = "txtLevel32";
+            this.txtLevel32.ReadOnly = true;
+            this.txtLevel32.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel32.TabIndex = 55;
+            this.txtLevel32.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtLevel31
+            // 
+            this.txtLevel31.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtLevel31.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtLevel31.Location = new System.Drawing.Point(320, 2);
+            this.txtLevel31.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLevel31.Multiline = true;
+            this.txtLevel31.Name = "txtLevel31";
+            this.txtLevel31.ReadOnly = true;
+            this.txtLevel31.Size = new System.Drawing.Size(102, 98);
+            this.txtLevel31.TabIndex = 56;
+            this.txtLevel31.Click += new System.EventHandler(this.ClickOnCard);
+            // 
             // flwCardNoble
             // 
             this.flwCardNoble.Controls.Add(this.txtNoble4);
@@ -443,6 +599,58 @@
             this.flwCardNoble.Name = "flwCardNoble";
             this.flwCardNoble.Size = new System.Drawing.Size(452, 109);
             this.flwCardNoble.TabIndex = 50;
+            // 
+            // txtNoble4
+            // 
+            this.txtNoble4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtNoble4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtNoble4.Location = new System.Drawing.Point(2, 2);
+            this.txtNoble4.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNoble4.Multiline = true;
+            this.txtNoble4.Name = "txtNoble4";
+            this.txtNoble4.ReadOnly = true;
+            this.txtNoble4.Size = new System.Drawing.Size(102, 98);
+            this.txtNoble4.TabIndex = 54;
+            this.txtNoble4.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtNoble3
+            // 
+            this.txtNoble3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtNoble3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtNoble3.Location = new System.Drawing.Point(108, 2);
+            this.txtNoble3.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNoble3.Multiline = true;
+            this.txtNoble3.Name = "txtNoble3";
+            this.txtNoble3.ReadOnly = true;
+            this.txtNoble3.Size = new System.Drawing.Size(102, 98);
+            this.txtNoble3.TabIndex = 55;
+            this.txtNoble3.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtNoble2
+            // 
+            this.txtNoble2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtNoble2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtNoble2.Location = new System.Drawing.Point(214, 2);
+            this.txtNoble2.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNoble2.Multiline = true;
+            this.txtNoble2.Name = "txtNoble2";
+            this.txtNoble2.ReadOnly = true;
+            this.txtNoble2.Size = new System.Drawing.Size(102, 98);
+            this.txtNoble2.TabIndex = 56;
+            this.txtNoble2.Click += new System.EventHandler(this.ClickOnCard);
+            // 
+            // txtNoble1
+            // 
+            this.txtNoble1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtNoble1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtNoble1.Location = new System.Drawing.Point(320, 2);
+            this.txtNoble1.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNoble1.Multiline = true;
+            this.txtNoble1.Name = "txtNoble1";
+            this.txtNoble1.ReadOnly = true;
+            this.txtNoble1.Size = new System.Drawing.Size(102, 98);
+            this.txtNoble1.TabIndex = 57;
+            this.txtNoble1.Click += new System.EventHandler(this.ClickOnCard);
             // 
             // numCardRubis
             // 
@@ -497,14 +705,6 @@
             this.flwPalyerCards.Name = "flwPalyerCards";
             this.flwPalyerCards.Size = new System.Drawing.Size(640, 107);
             this.flwPalyerCards.TabIndex = 55;
-            // 
-            // numCardNoble
-            // 
-            this.numCardNoble.Location = new System.Drawing.Point(582, 628);
-            this.numCardNoble.Name = "numCardNoble";
-            this.numCardNoble.Size = new System.Drawing.Size(40, 20);
-            this.numCardNoble.TabIndex = 65;
-            this.numCardNoble.ValueChanged += new System.EventHandler(this.nbCards_ValueChanged);
             // 
             // txtPlayerRubisCard
             // 
@@ -583,213 +783,13 @@
             this.txtPlayerNobleCard.Size = new System.Drawing.Size(102, 98);
             this.txtPlayerNobleCard.TabIndex = 60;
             // 
-            // txtNoble4
+            // numCardNoble
             // 
-            this.txtNoble4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtNoble4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtNoble4.Location = new System.Drawing.Point(2, 2);
-            this.txtNoble4.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNoble4.Multiline = true;
-            this.txtNoble4.Name = "txtNoble4";
-            this.txtNoble4.ReadOnly = true;
-            this.txtNoble4.Size = new System.Drawing.Size(102, 98);
-            this.txtNoble4.TabIndex = 54;
-            this.txtNoble4.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtNoble3
-            // 
-            this.txtNoble3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtNoble3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtNoble3.Location = new System.Drawing.Point(108, 2);
-            this.txtNoble3.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNoble3.Multiline = true;
-            this.txtNoble3.Name = "txtNoble3";
-            this.txtNoble3.ReadOnly = true;
-            this.txtNoble3.Size = new System.Drawing.Size(102, 98);
-            this.txtNoble3.TabIndex = 55;
-            this.txtNoble3.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtNoble2
-            // 
-            this.txtNoble2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtNoble2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtNoble2.Location = new System.Drawing.Point(214, 2);
-            this.txtNoble2.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNoble2.Multiline = true;
-            this.txtNoble2.Name = "txtNoble2";
-            this.txtNoble2.ReadOnly = true;
-            this.txtNoble2.Size = new System.Drawing.Size(102, 98);
-            this.txtNoble2.TabIndex = 56;
-            this.txtNoble2.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtNoble1
-            // 
-            this.txtNoble1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtNoble1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtNoble1.Location = new System.Drawing.Point(320, 2);
-            this.txtNoble1.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNoble1.Multiline = true;
-            this.txtNoble1.Name = "txtNoble1";
-            this.txtNoble1.ReadOnly = true;
-            this.txtNoble1.Size = new System.Drawing.Size(102, 98);
-            this.txtNoble1.TabIndex = 57;
-            this.txtNoble1.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel34
-            // 
-            this.txtLevel34.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel34.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel34.Location = new System.Drawing.Point(2, 2);
-            this.txtLevel34.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel34.Multiline = true;
-            this.txtLevel34.Name = "txtLevel34";
-            this.txtLevel34.ReadOnly = true;
-            this.txtLevel34.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel34.TabIndex = 53;
-            this.txtLevel34.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel33
-            // 
-            this.txtLevel33.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel33.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel33.Location = new System.Drawing.Point(108, 2);
-            this.txtLevel33.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel33.Multiline = true;
-            this.txtLevel33.Name = "txtLevel33";
-            this.txtLevel33.ReadOnly = true;
-            this.txtLevel33.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel33.TabIndex = 54;
-            this.txtLevel33.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel32
-            // 
-            this.txtLevel32.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel32.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel32.Location = new System.Drawing.Point(214, 2);
-            this.txtLevel32.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel32.Multiline = true;
-            this.txtLevel32.Name = "txtLevel32";
-            this.txtLevel32.ReadOnly = true;
-            this.txtLevel32.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel32.TabIndex = 55;
-            this.txtLevel32.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel31
-            // 
-            this.txtLevel31.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel31.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel31.Location = new System.Drawing.Point(320, 2);
-            this.txtLevel31.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel31.Multiline = true;
-            this.txtLevel31.Name = "txtLevel31";
-            this.txtLevel31.ReadOnly = true;
-            this.txtLevel31.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel31.TabIndex = 56;
-            this.txtLevel31.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel24
-            // 
-            this.txtLevel24.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel24.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel24.Location = new System.Drawing.Point(2, 2);
-            this.txtLevel24.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel24.Multiline = true;
-            this.txtLevel24.Name = "txtLevel24";
-            this.txtLevel24.ReadOnly = true;
-            this.txtLevel24.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel24.TabIndex = 52;
-            this.txtLevel24.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel23
-            // 
-            this.txtLevel23.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel23.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel23.Location = new System.Drawing.Point(108, 2);
-            this.txtLevel23.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel23.Multiline = true;
-            this.txtLevel23.Name = "txtLevel23";
-            this.txtLevel23.ReadOnly = true;
-            this.txtLevel23.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel23.TabIndex = 53;
-            this.txtLevel23.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel22
-            // 
-            this.txtLevel22.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel22.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel22.Location = new System.Drawing.Point(214, 2);
-            this.txtLevel22.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel22.Multiline = true;
-            this.txtLevel22.Name = "txtLevel22";
-            this.txtLevel22.ReadOnly = true;
-            this.txtLevel22.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel22.TabIndex = 54;
-            this.txtLevel22.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel21
-            // 
-            this.txtLevel21.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel21.Location = new System.Drawing.Point(320, 2);
-            this.txtLevel21.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel21.Multiline = true;
-            this.txtLevel21.Name = "txtLevel21";
-            this.txtLevel21.ReadOnly = true;
-            this.txtLevel21.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel21.TabIndex = 55;
-            this.txtLevel21.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel12
-            // 
-            this.txtLevel12.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel12.Location = new System.Drawing.Point(2, 2);
-            this.txtLevel12.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel12.Multiline = true;
-            this.txtLevel12.Name = "txtLevel12";
-            this.txtLevel12.ReadOnly = true;
-            this.txtLevel12.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel12.TabIndex = 53;
-            this.txtLevel12.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel11
-            // 
-            this.txtLevel11.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel11.Location = new System.Drawing.Point(108, 2);
-            this.txtLevel11.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel11.Multiline = true;
-            this.txtLevel11.Name = "txtLevel11";
-            this.txtLevel11.ReadOnly = true;
-            this.txtLevel11.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel11.TabIndex = 54;
-            this.txtLevel11.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel13
-            // 
-            this.txtLevel13.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel13.Location = new System.Drawing.Point(214, 2);
-            this.txtLevel13.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel13.Multiline = true;
-            this.txtLevel13.Name = "txtLevel13";
-            this.txtLevel13.ReadOnly = true;
-            this.txtLevel13.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel13.TabIndex = 52;
-            this.txtLevel13.Click += new System.EventHandler(this.ClickOnCard);
-            // 
-            // txtLevel14
-            // 
-            this.txtLevel14.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtLevel14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtLevel14.Location = new System.Drawing.Point(320, 2);
-            this.txtLevel14.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLevel14.Multiline = true;
-            this.txtLevel14.Name = "txtLevel14";
-            this.txtLevel14.ReadOnly = true;
-            this.txtLevel14.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel14.TabIndex = 51;
-            this.txtLevel14.Click += new System.EventHandler(this.ClickOnCard);
+            this.numCardNoble.Location = new System.Drawing.Point(582, 628);
+            this.numCardNoble.Name = "numCardNoble";
+            this.numCardNoble.Size = new System.Drawing.Size(40, 20);
+            this.numCardNoble.TabIndex = 65;
+            this.numCardNoble.ValueChanged += new System.EventHandler(this.nbCards_ValueChanged);
             // 
             // frmSplendor
             // 
