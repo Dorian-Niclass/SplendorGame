@@ -84,10 +84,6 @@ namespace Splendor
             conn = new ConnectionDB();
 
             //load cards from the database
-            //they are not hard coded any more
-            //TO DO
-
-            //load cards from the database
             level1Cards = conn.GetListCardAccordingToLevel(1);
             level2Cards = conn.GetListCardAccordingToLevel(2);
             level3Cards = conn.GetListCardAccordingToLevel(3);
@@ -96,18 +92,11 @@ namespace Splendor
             level1Cards = Shuffle<Card>(level1Cards);
             level2Cards = Shuffle<Card>(level2Cards);
             level3Cards = Shuffle<Card>(level3Cards);
-            level4Cards = Shuffle<Card>(level3Cards);
-
-            /*cardsOnTable[1,1] = level1Cards.Pop();
-            cardsOnTable[2,1] = level2Cards.Pop();
-            cardsOnTable[3,1] = level3Cards.Pop();*/
-
+            level4Cards = Shuffle<Card>(level4Cards);
 
             //Go through the results
             //Don't forget to check when you are at the end of the stack
             
-            //fin TO DO
-
             this.Width = 680;
             this.Height = 540;
 
@@ -136,10 +125,11 @@ namespace Splendor
             PutCardsOnTable();
         }
 
+        /// <summary>
+        /// Update the coins number
+        /// </summary>
         private void UpdateCoins()
         {
-            Console.WriteLine("Coins updated");
-
             lblRubisCoin.Text = coins[(int)Ressources.Rubis].ToString();
             lblSaphirCoin.Text = coins[(int)Ressources.Saphir].ToString();
             lblOnyxCoin.Text = coins[(int)Ressources.Onyx].ToString();
@@ -153,6 +143,12 @@ namespace Splendor
             lblChoiceEmeraude.Text = choosedCoins[(int)Ressources.Emeraude].ToString();
         }
 
+        /// <summary>
+        /// Shuffle a list
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="stack"></param>
+        /// <returns></returns>
         private Stack<T> Shuffle<T>(Stack<T> stack)
         {
             Random rnd = new Random();
@@ -168,8 +164,6 @@ namespace Splendor
         {
             this.Width = 680;
             this.Height = 800;
-
-            int id = 0;
 
             players = conn.GetPlayers();
 
@@ -190,8 +184,7 @@ namespace Splendor
 
             //no coins selected
 
-
-            choosedCoins = new int[] {0, 0, 0, 0, 0};
+            choosedCoins = new int[] { 0, 0, 0, 0, 0 };
 
             //no coins or card selected yet, labels are empty
             lblChoiceDiamand.Text = choosedCoins[(int)Ressources.Diamand].ToString();
@@ -220,7 +213,6 @@ namespace Splendor
             lblChoiceOnyx.Visible = true;
             lblChoiceEmeraude.Visible = true;
             lblChoiceDiamand.Visible = true;
-
         }
 
         /// <summary>
@@ -233,8 +225,7 @@ namespace Splendor
                 for (int j = 0; j < cardsOnTable.GetLength(1); j++)
                 {
                     if(cardsOnTable[i,j] == null)
-                    {
-                        
+                    { 
                         switch (i)
                         {
                             case 0:
@@ -350,8 +341,6 @@ namespace Splendor
                     cmdValidateChoice.Enabled = true;
 
                 UpdateCoins();
-
-              
             }
         }
 
@@ -373,9 +362,7 @@ namespace Splendor
                 coins[(int)ressource] += 1;
             }
 
-            UpdateCoins();
-
-            
+            UpdateCoins();       
         }
 
         /// <summary>
@@ -434,15 +421,12 @@ namespace Splendor
             cmdValidateChoice.Enabled = false;
 
             if (currentPlayerId < players.Count-1)
-            {
                 currentPlayerId++;
-            }
             else
-            {
                 currentPlayerId = 0;
-            }
 
             LoadPlayer(currentPlayerId);
+            DrawCards();
         }
 
         /// <summary>
@@ -452,7 +436,7 @@ namespace Splendor
         /// <param name="e"></param>
         private void frmSplendor_Paint(object sender, PaintEventArgs e)
         {
-            DrawCards();
+            //DrawCards();
         }
 
         /// <summary>
@@ -467,6 +451,7 @@ namespace Splendor
             {
                 foreach (CardText cardText in control.Controls.OfType<CardText>())
                 {
+                    Application.DoEvents();
                     cardText.Refresh();
                 }
             }        
@@ -474,18 +459,11 @@ namespace Splendor
 
         private void DrawCoins()
         {
-            try
-            {
-                lblPlayerRubisCoin.Text = players[currentPlayerId].Coins[Ressources.Rubis].ToString();
-                lblPlayerSaphirCoin.Text = players[currentPlayerId].Coins[Ressources.Saphir].ToString();
-                lblPlayerEmeraudeCoin.Text = players[currentPlayerId].Coins[Ressources.Emeraude].ToString();
-                lblPlayerDiamandCoin.Text = players[currentPlayerId].Coins[Ressources.Diamand].ToString();
-                lblPlayerOnyxCoin.Text = players[currentPlayerId].Coins[Ressources.Onyx].ToString();
-            }
-            catch (Exception e)
-            {
-
-            }
+            lblPlayerRubisCoin.Text = players[currentPlayerId].Coins[Ressources.Rubis].ToString();
+            lblPlayerSaphirCoin.Text = players[currentPlayerId].Coins[Ressources.Saphir].ToString();
+            lblPlayerEmeraudeCoin.Text = players[currentPlayerId].Coins[Ressources.Emeraude].ToString();
+            lblPlayerDiamandCoin.Text = players[currentPlayerId].Coins[Ressources.Diamand].ToString();
+            lblPlayerOnyxCoin.Text = players[currentPlayerId].Coins[Ressources.Onyx].ToString();
         }
 
         /// <summary>
@@ -509,35 +487,45 @@ namespace Splendor
                         break;
                     }
                 }
-                DialogResult result = MessageBox.Show("Voulez-vous acheter cette carte ?", "Acheter", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (canBuy && result == DialogResult.OK)
+
+                if (canBuy)
                 {
-                    players[currentPlayerId].Cards.Add(card);
-
-                    int cardRow = 0;
-                    int cardCol = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 1, 1));
-
-                    if (txtCard.Name.Contains("Noble"))
+                    DialogResult result = MessageBox.Show("Voulez-vous acheter cette carte ?", "Acheter", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
                     {
-                        cardRow = 4;
+                        players[currentPlayerId].Cards.Add(card);
+
+                        foreach (Ressources ress in card.Cost.Keys)
+                        {
+                            players[currentPlayerId].Coins[ress] -= card.Cost[ress];
+                        }
+
+                        int cardRow = 0;
+                        int cardCol = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 1, 1));
+
+                        if (txtCard.Name.Contains("Noble"))
+                        {
+                            cardRow = 4;
+                        }
+                        else
+                        {
+                            cardRow = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 2, 1));
+                        }
+
+                        cardsOnTable[cardRow - 1, cardCol - 1] = null;
+                        txtCard.SetCard(null);
+
+                        if (cardRow != 4)
+                        {
+                            txtCard.SetCard(PickNewCard(cardRow - 1, cardCol - 1));
+                        }
+
+                        enableClicLabel = false;
+                        cmdValidateChoice.Enabled = true;
+
+                        DrawCoins();
+                        DrawCards();
                     }
-                    else
-                    {
-                        cardRow = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 2, 1));
-                    }
-
-                    cardsOnTable[cardRow - 1, cardCol - 1] = null;
-                    txtCard.SetCard(null);
-
-                    if (cardRow != 4)
-                    {
-                        txtCard.SetCard(PickNewCard(cardRow - 1, cardCol - 1));
-                    }
-
-                    enableClicLabel = false;
-                    cmdValidateChoice.Enabled = true;
-
-                    DrawCards();
                 }
                 else
                 {
@@ -550,11 +538,19 @@ namespace Splendor
         {
             if (players != null)
             {
-                try { txtPlayerRubisCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Rubis).ToList()[(int)numCardRubis.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
-                try { txtPlayerSaphirCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Saphir).ToList()[(int)numCardSaphir.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
-                try { txtPlayerOnyxCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Onyx).ToList()[(int)numCardOnyx.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
-                try { txtPlayerEmeraudeCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Emeraude).ToList()[(int)numCardEmeraude.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
-                try { txtPlayerDiamandCard.SetCard(players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Diamand).ToList()[(int)numCardDiamand.Value]); } catch { txtPlayerRubisCard.SetCard(null); }
+                List<Card> rubisCard = players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Rubis).ToList();
+                List<Card> saphirCard = players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Saphir).ToList();
+                List<Card> onyxCard = players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Onyx).ToList();
+                List<Card> emeraudeCard = players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Emeraude).ToList();
+                List<Card> diamandCard = players[currentPlayerId].Cards.Where(x => x.Ress == Ressources.Diamand).ToList();
+                List<Card> nobleCard = players[currentPlayerId].Cards.Where(x => x.Level == 4).ToList();
+
+                txtPlayerRubisCard.SetCard(rubisCard.Count > 0 ? rubisCard[(int)numCardRubis.Value] : null);
+                txtPlayerSaphirCard.SetCard(saphirCard.Count > 0 ? saphirCard[(int)numCardSaphir.Value] : null);
+                txtPlayerOnyxCard.SetCard(onyxCard.Count > 0 ? onyxCard[(int)numCardOnyx.Value] : null);
+                txtPlayerEmeraudeCard.SetCard(emeraudeCard.Count > 0 ? emeraudeCard[(int)numCardEmeraude.Value] : null);
+                txtPlayerDiamandCard.SetCard(diamandCard.Count > 0 ? diamandCard[(int)numCardDiamand.Value] : null);
+                txtPlayerNobleCard.SetCard(nobleCard.Count > 0 ? nobleCard[(int)numCardNoble.Value] : null);
             }
         }
 
@@ -563,9 +559,19 @@ namespace Splendor
             NumericUpDown num = (NumericUpDown)sender;
             string ress = num.Name.Substring(7);
 
-            if((int)num.Value > players[currentPlayerId].Cards.Where(x => x.Ress == (Ressources)Enum.Parse(typeof(Ressources), ress)).ToList().Count-1)
+            if (ress == "Noble")
             {
-                num.Value = 0;
+                if ((int)num.Value > players[currentPlayerId].Cards.Where(x => x.Level == 4).ToList().Count - 1)
+                {
+                    num.Value = 0;
+                }
+            }
+            else
+            {
+                if ((int)num.Value > players[currentPlayerId].Cards.Where(x => x.Ress == (Ressources)Enum.Parse(typeof(Ressources), ress)).ToList().Count - 1)
+                {
+                    num.Value = 0;
+                }
             }
 
             DrawCards();
