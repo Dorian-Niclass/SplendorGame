@@ -10,7 +10,7 @@ namespace Splendor
     /// <summary>
     /// class Player : attributes and methods to deal with a player
     /// </summary>
-    class Player
+    public class Player
     {
 
         /// <summary>

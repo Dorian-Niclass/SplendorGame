@@ -43,7 +43,9 @@ namespace Splendor
         //id of the player that is playing
         private int currentPlayerId;
         //boolean to enable us to know if the user can click on a coin or a card
-        private bool enableClicLabel;
+        private bool enableClicLabel = false;
+        //boolean to enable us to know if the user can click on button play
+        public bool enableClicPlay = false;
         //connection to the database
         private ConnectionDB conn;
 
@@ -54,7 +56,9 @@ namespace Splendor
 
         private Card[,] cardsOnTable = new Card[4, 4];
 
-        private List<Player> players;
+        public List<Player> players = new List<Player>();
+
+        private AddPlayerForm addPlayerForm;
 
         /// <summary>
         /// constructor
@@ -113,9 +117,6 @@ namespace Splendor
             cardsOnTable[2,1] = level2Cards.Pop();
             cardsOnTable[3,1] = level3Cards.Pop();*/
 
-
-            //load cards from the database
-            Stack<Card> listCardOne = conn.GetListCardAccordingToLevel(1);
             //Go through the results
             //Don't forget to check when you are at the end of the stack
             
@@ -169,15 +170,16 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdPlay_Click(object sender, EventArgs e)
         {
-            this.Width = 680;
-            this.Height = 800;
+            if (enableClicPlay)
+            {
+                cmdInsertPlayer.Enabled = false;
+                this.Width = 680;
+                this.Height = 800;
 
-            int id = 0;
-
-            players = conn.GetPlayers();
-
-            LoadPlayer(0);
-
+                LoadPlayer(0);
+            }
+            else
+                MessageBox.Show("Vous devez inserer entre deux et quatre joueurs pour pouvoir jouer.");
         }
 
 
@@ -663,7 +665,12 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdInsertPlayer_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("A implémenter");
+
+            if (addPlayerForm == null || !addPlayerForm.Visible)
+            {
+                addPlayerForm = new AddPlayerForm(this);
+                addPlayerForm.Show();
+            }
         }
 
         /// <summary>
@@ -731,7 +738,6 @@ namespace Splendor
                 lblPlayerEmeraudeCoin.Text = players[currentPlayerId].Coins[Ressources.Emeraude].ToString();
                 lblPlayerDiamandCoin.Text = players[currentPlayerId].Coins[Ressources.Diamand].ToString();
                 lblPlayerOnyxCoin.Text = players[currentPlayerId].Coins[Ressources.Onyx].ToString();
-
             }
             catch (Exception e)
             {
