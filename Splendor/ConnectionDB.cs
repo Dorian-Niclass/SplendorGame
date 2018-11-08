@@ -160,11 +160,11 @@ namespace Splendor
                 player.Ressources = new int[] { 0, 0, 0, 0, 0 };
                 player.Coins = new Dictionary<Ressources, int>()
                 {
-                    {Ressources.Diamand, 0},
-                    {Ressources.Onyx, 0},
-                    {Ressources.Rubis, 0},
-                    {Ressources.Saphir, 0},
-                    {Ressources.Emeraude, 0}
+                    {Ressources.Diamand, 20},
+                    {Ressources.Onyx, 20},
+                    {Ressources.Rubis, 20},
+                    {Ressources.Saphir, 20},
+                    {Ressources.Emeraude, 20}
                 };
                 player.Cards = new List<Card>();
 
