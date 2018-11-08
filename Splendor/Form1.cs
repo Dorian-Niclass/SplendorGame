@@ -54,9 +54,9 @@ namespace Splendor
 
         private Card[,] cardsOnTable = new Card[4, 4];
 
-        private List<Player> players;
+        public List<Player> players = new List<Player>();
 
-        private AddPlayerForm addPlayerForm = new AddPlayerForm();
+        private AddPlayerForm addPlayerForm;
 
         /// <summary>
         /// constructor
@@ -662,9 +662,10 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdInsertPlayer_Click(object sender, EventArgs e)
         {
-            if (!addPlayerForm.Visible)
+
+            if (addPlayerForm == null || !addPlayerForm.Visible)
             {
-                addPlayerForm = new AddPlayerForm();
+                addPlayerForm = new AddPlayerForm(this);
                 addPlayerForm.Show();
             }
         }
@@ -736,7 +737,6 @@ namespace Splendor
                 lblPlayerEmeraudeCoin.Text = players[currentPlayerId].Coins[Ressources.Emeraude].ToString();
                 lblPlayerDiamandCoin.Text = players[currentPlayerId].Coins[Ressources.Diamand].ToString();
                 lblPlayerOnyxCoin.Text = players[currentPlayerId].Coins[Ressources.Onyx].ToString();
-
             }
             catch (Exception e)
             {

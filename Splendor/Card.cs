@@ -9,7 +9,7 @@ namespace Splendor
     /// <summary>
     /// class Card : attributes and methods to deal with a card
     /// </summary>
-    class Card
+    public class Card
     {
 
         /// <summary>

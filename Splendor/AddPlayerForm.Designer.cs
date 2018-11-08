@@ -31,6 +31,7 @@
             this.lstPlayer = new System.Windows.Forms.ListBox();
             this.txtAddPlayer = new System.Windows.Forms.TextBox();
             this.cmdRemovePlayer = new System.Windows.Forms.Button();
+            this.cmdFinish = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstPlayer
@@ -46,26 +47,37 @@
             // 
             this.txtAddPlayer.Location = new System.Drawing.Point(12, 256);
             this.txtAddPlayer.Name = "txtAddPlayer";
-            this.txtAddPlayer.Size = new System.Drawing.Size(175, 20);
+            this.txtAddPlayer.Size = new System.Drawing.Size(271, 20);
             this.txtAddPlayer.TabIndex = 1;
             this.txtAddPlayer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAddPlayer_KeyDown);
             // 
             // cmdRemovePlayer
             // 
             this.cmdRemovePlayer.Enabled = false;
-            this.cmdRemovePlayer.Location = new System.Drawing.Point(193, 256);
+            this.cmdRemovePlayer.Location = new System.Drawing.Point(12, 282);
             this.cmdRemovePlayer.Name = "cmdRemovePlayer";
-            this.cmdRemovePlayer.Size = new System.Drawing.Size(90, 20);
+            this.cmdRemovePlayer.Size = new System.Drawing.Size(128, 20);
             this.cmdRemovePlayer.TabIndex = 2;
-            this.cmdRemovePlayer.Text = "Remove";
+            this.cmdRemovePlayer.Text = "Supprimer";
             this.cmdRemovePlayer.UseVisualStyleBackColor = true;
             this.cmdRemovePlayer.Click += new System.EventHandler(this.cmdRemovePlayer_Click);
+            // 
+            // cmdFinish
+            // 
+            this.cmdFinish.Location = new System.Drawing.Point(155, 282);
+            this.cmdFinish.Name = "cmdFinish";
+            this.cmdFinish.Size = new System.Drawing.Size(128, 20);
+            this.cmdFinish.TabIndex = 3;
+            this.cmdFinish.Text = "Terminé";
+            this.cmdFinish.UseVisualStyleBackColor = true;
+            this.cmdFinish.Click += new System.EventHandler(this.cmdFinish_Click);
             // 
             // AddPlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(295, 292);
+            this.ClientSize = new System.Drawing.Size(295, 314);
+            this.Controls.Add(this.cmdFinish);
             this.Controls.Add(this.cmdRemovePlayer);
             this.Controls.Add(this.txtAddPlayer);
             this.Controls.Add(this.lstPlayer);
@@ -81,5 +93,6 @@
         private System.Windows.Forms.ListBox lstPlayer;
         private System.Windows.Forms.TextBox txtAddPlayer;
         private System.Windows.Forms.Button cmdRemovePlayer;
+        private System.Windows.Forms.Button cmdFinish;
     }
 }

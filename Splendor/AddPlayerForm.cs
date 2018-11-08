@@ -12,9 +12,17 @@ namespace Splendor
 {
     public partial class AddPlayerForm : Form
     {
-        public AddPlayerForm()
+        frmSplendor frmSplendor;
+
+        public AddPlayerForm(frmSplendor form)
         {
+            frmSplendor = form;
             InitializeComponent();
+
+            foreach (Player player in frmSplendor.players)
+            {
+                lstPlayer.Items.Add(player.Name);
+            }            
         }
 
         /// <summary>
@@ -61,6 +69,35 @@ namespace Splendor
         {
             if (lstPlayer.SelectedIndex >= 0)
                 cmdRemovePlayer.Enabled = true;
+        }
+
+        private void cmdFinish_Click(object sender, EventArgs e)
+        {
+
+            if (lstPlayer.Items.Count >= 2 && lstPlayer.Items.Count <= 4)
+            {
+                frmSplendor.players.Clear();
+
+                foreach (string item in lstPlayer.Items)
+                {
+                    Player player = new Player();
+                    player.Name = item;
+                    frmSplendor.players.Add(player);
+                }
+
+                foreach (Player player in frmSplendor.players)
+                {
+                    Console.WriteLine(player.Name);
+                }
+
+                Form.ActiveForm.Close();
+            }
+            else
+            {
+                MessageBox.Show("Vous devez inserer entre deux et quatre joueurs.");
+            }
+
+
         }
     }
 }
