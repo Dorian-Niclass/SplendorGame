@@ -97,9 +97,6 @@ namespace Splendor
             level2Cards = Shuffle<Card>(level2Cards);
             level3Cards = Shuffle<Card>(level3Cards);
             level4Cards = Shuffle<Card>(level4Cards);
-
-            //Go through the results
-            //Don't forget to check when you are at the end of the stack
             
             this.Width = 680;
             this.Height = 540;
@@ -113,10 +110,6 @@ namespace Splendor
             lblChoiceDiamand.Visible = false;
             cmdValidateChoice.Enabled = false;
             cmdNextPlayer.Enabled = false;
-
-            //we wire the click on all cards to the same event
-            //TO DO for all cards
-            txtLevel13.Click += ClickOnCard;
 
             foreach (FlowLayoutPanel control in this.Controls.OfType<FlowLayoutPanel>())
             {
@@ -144,6 +137,12 @@ namespace Splendor
             lblChoiceRubis.Text = choosedCoins[(int)Ressources.Rubis].ToString();
             lblChoiceSaphir.Text = choosedCoins[(int)Ressources.Saphir].ToString();
             lblChoiceEmeraude.Text = choosedCoins[(int)Ressources.Emeraude].ToString();
+
+            lblPlayerRubisCoin.Text = players[currentPlayerId].Coins[Ressources.Rubis].ToString();
+            lblPlayerSaphirCoin.Text = players[currentPlayerId].Coins[Ressources.Saphir].ToString();
+            lblPlayerEmeraudeCoin.Text = players[currentPlayerId].Coins[Ressources.Emeraude].ToString();
+            lblPlayerDiamandCoin.Text = players[currentPlayerId].Coins[Ressources.Diamand].ToString();
+            lblPlayerOnyxCoin.Text = players[currentPlayerId].Coins[Ressources.Onyx].ToString();
         }
 
         /// <summary>
@@ -413,18 +412,24 @@ namespace Splendor
             lblChoiceSaphir.Visible = false;
             lblChoiceEmeraude.Visible = false;
 
-            cmdNextPlayer.Visible = true;
-            //TO DO Check if card or coins are selected, impossible to do both at the same time
-
             players[currentPlayerId].Coins[Ressources.Rubis] += choosedCoins[(int)Ressources.Rubis];
             players[currentPlayerId].Coins[Ressources.Saphir] += choosedCoins[(int)Ressources.Saphir];
             players[currentPlayerId].Coins[Ressources.Emeraude] += choosedCoins[(int)Ressources.Emeraude];
             players[currentPlayerId].Coins[Ressources.Diamand] += choosedCoins[(int)Ressources.Diamand];
             players[currentPlayerId].Coins[Ressources.Onyx] += choosedCoins[(int)Ressources.Onyx];
 
-            DrawCoins();
+            UpdateCoins();
             lblNbPtPrestige.Text = players[currentPlayerId].GetPrestige().ToString();
-            cmdNextPlayer.Enabled = true;
+
+            if (players[currentPlayerId].GetPrestige() >= 15)
+            {
+                MessageBox.Show(players[currentPlayerId].Name + " a gagné !", "Victoire");            
+            }
+            else
+            {
+                cmdNextPlayer.Enabled = true;
+                cmdNextPlayer.Visible = true;
+            }
         }
 
         /// <summary>
@@ -484,15 +489,6 @@ namespace Splendor
             }        
         }
 
-        private void DrawCoins()
-        {
-            lblPlayerRubisCoin.Text = players[currentPlayerId].Coins[Ressources.Rubis].ToString();
-            lblPlayerSaphirCoin.Text = players[currentPlayerId].Coins[Ressources.Saphir].ToString();
-            lblPlayerEmeraudeCoin.Text = players[currentPlayerId].Coins[Ressources.Emeraude].ToString();
-            lblPlayerDiamandCoin.Text = players[currentPlayerId].Coins[Ressources.Diamand].ToString();
-            lblPlayerOnyxCoin.Text = players[currentPlayerId].Coins[Ressources.Onyx].ToString();
-        }
-
         /// <summary>
         /// Where the player click on a card
         /// </summary>
@@ -508,7 +504,7 @@ namespace Splendor
 
                 foreach (Ressources ress in card.Cost.Keys)
                 {
-                    if (players[currentPlayerId].Coins[ress] < card.Cost[ress])
+                    if ((txtCard.Name.Contains("Noble") ? 0 : players[currentPlayerId].Coins[ress]) + players[currentPlayerId].GetRessources()[ress] < card.Cost[ress])
                     {
                         canBuy = false;
                         break;
@@ -523,10 +519,7 @@ namespace Splendor
                     {
                         players[currentPlayerId].Cards.Add(card);
 
-                        foreach (Ressources ress in card.Cost.Keys)
-                        {
-                            players[currentPlayerId].Coins[ress] -= card.Cost[ress];
-                        }
+
 
                         int cardRow = 0;
                         int cardCol = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 1, 1));
@@ -538,6 +531,12 @@ namespace Splendor
                         else
                         {
                             cardRow = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 2, 1));
+                            foreach (Ressources ress in card.Cost.Keys)
+                            {
+                                int coins = card.Cost[ress] - players[currentPlayerId].GetRessources()[ress];
+                                players[currentPlayerId].Coins[ress] -= coins >= 0 ? coins : 0;
+                                this.coins[(int)ress] += coins >= 0 ? coins : 0;
+                            }
                         }
 
                         cardsOnTable[cardRow - 1, cardCol - 1] = null;
@@ -551,7 +550,7 @@ namespace Splendor
                         enableClicLabel = false;
                         cmdValidateChoice.Enabled = true;
 
-                        DrawCoins();
+                        UpdateCoins();
                         DrawCards();
                     }
                 }
@@ -562,6 +561,9 @@ namespace Splendor
             }
         }
 
+        /// <summary>
+        /// Refresh the display of player's cards
+        /// </summary>
         private void RefreshPlayerCards()
         {
             if (players.Count != 0)
@@ -582,6 +584,11 @@ namespace Splendor
             }
         }
 
+        /// <summary>
+        /// When the value of the displayed player card change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void nbCards_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown num = (NumericUpDown)sender;

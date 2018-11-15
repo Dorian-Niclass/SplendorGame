@@ -21,7 +21,23 @@ namespace Splendor
         /// <summary>
         /// all the precious stones he has
         /// </summary>
-        public int[] Ressources { get; set; }
+        public Dictionary<Ressources, int> GetRessources()
+        {
+            int nbSaphir = this.Cards.Count(x => x.Ress == Ressources.Saphir);
+            int nbRubis = this.Cards.Count(x => x.Ress == Ressources.Rubis);
+            int nbOnyx = this.Cards.Count(x => x.Ress == Ressources.Onyx);
+            int nbEmeraude = this.Cards.Count(x => x.Ress == Ressources.Emeraude);
+            int nbDiamand = this.Cards.Count(x => x.Ress == Ressources.Diamand);
+
+            return new Dictionary<Ressources, int> {
+                { Ressources.Saphir, nbSaphir },
+                { Ressources.Rubis, nbRubis },
+                { Ressources.Onyx, nbOnyx },
+                { Ressources.Emeraude, nbEmeraude },
+                { Ressources.Diamand, nbDiamand }
+            };
+
+        }
 
         /// <summary>
         /// all the coins he has

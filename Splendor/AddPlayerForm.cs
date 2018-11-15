@@ -80,7 +80,6 @@ namespace Splendor
                     Player player = new Player();
 
                     player.Name = item;
-                    player.Ressources = new int[] { 0, 0, 0, 0, 0 };
                     player.Coins = new Dictionary<Ressources, int>()
                     {
                         {Ressources.Diamand, 0},
