@@ -49,8 +49,15 @@ namespace Splendor
         /// </summary>
         public int Id { get; set; }
 
+        /// <summary>
+        /// All the cards the player has
+        /// </summary>
         public List<Card> Cards { get; set; }
 
+        /// <summary>
+        /// Get the prestige score
+        /// </summary>
+        /// <returns></returns>
         public int GetPrestige()
         {
             int prestigePt = 0;
