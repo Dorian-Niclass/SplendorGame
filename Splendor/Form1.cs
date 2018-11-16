@@ -115,10 +115,9 @@ namespace Splendor
             {
                 foreach (CardText cardText in control.Controls.OfType<CardText>())
                 {
-                    cardText.LoadPosition();
+                    cardText.Load();
                 }
             }
-
         }
 
         /// <summary>
@@ -174,7 +173,7 @@ namespace Splendor
                 PutCardsOnTable();
             }
             else
-                MessageBox.Show("Vous devez inserer entre deux et quatre joueurs pour pouvoir jouer.");
+                MessageBox.Show("Vous devez insérer entre deux et quatre joueurs pour pouvoir jouer.");
         }
 
 
@@ -217,6 +216,8 @@ namespace Splendor
             lblChoiceOnyx.Visible = true;
             lblChoiceEmeraude.Visible = true;
             lblChoiceDiamand.Visible = true;
+
+            RefreshPlayerCards();
         }
 
         /// <summary>
@@ -258,8 +259,6 @@ namespace Splendor
                     cardText.SetCard(cardsOnTable[cardText.row, cardText.col]);
                 }
             }
-
-            DrawCards();
         }
 
         /// <summary>
@@ -439,7 +438,6 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdInsertPlayer_Click(object sender, EventArgs e)
         {
-
             if (addPlayerForm == null || !addPlayerForm.Visible)
             {
                 addPlayerForm = new AddPlayerForm(this);
@@ -454,11 +452,6 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdNextPlayer_Click(object sender, EventArgs e)
         {
-            //TO DO in release 1.0 : 3 is hard coded (number of players for the game), it shouldn't. 
-            //TO DO Get the id of the player : in release 0.1 there are only 3 players
-            //Reload the data of the player
-            //We are not allowed to click on the next button
-
             cmdNextPlayer.Enabled = false;
             cmdValidateChoice.Enabled = false;
 
@@ -468,25 +461,6 @@ namespace Splendor
                 currentPlayerId = 0;
 
             LoadPlayer(currentPlayerId);
-            DrawCards();
-        }
-
-        /// <summary>
-        /// Draw the cards on the board
-        /// </summary>
-        private void DrawCards()
-        {
-            RefreshPlayerCards();
-
-            //Check all the text box for the cards if there is a card associated, if so, print the card properties inside
-            foreach (FlowLayoutPanel control in this.Controls.OfType<FlowLayoutPanel>())
-            {
-                foreach (CardText cardText in control.Controls.OfType<CardText>())
-                {
-                    Application.DoEvents();
-                    cardText.Refresh();
-                }
-            }        
         }
 
         /// <summary>
@@ -519,8 +493,6 @@ namespace Splendor
                     {
                         players[currentPlayerId].Cards.Add(card);
 
-
-
                         int cardRow = 0;
                         int cardCol = Int32.Parse(txtCard.Name.Substring(txtCard.Name.Length - 1, 1));
 
@@ -551,7 +523,7 @@ namespace Splendor
                         cmdValidateChoice.Enabled = true;
 
                         UpdateCoins();
-                        DrawCards();
+                        RefreshPlayerCards();
                     }
                 }
                 else
@@ -562,7 +534,7 @@ namespace Splendor
         }
 
         /// <summary>
-        /// Refresh the display of player's cards
+        /// Refresh the display of the player's cards
         /// </summary>
         private void RefreshPlayerCards()
         {
@@ -609,7 +581,7 @@ namespace Splendor
                 }
             }
 
-            DrawCards();
+            RefreshPlayerCards();
         }
     }
 }

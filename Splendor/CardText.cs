@@ -13,8 +13,6 @@ namespace Splendor
         public Card Card { get; private set; }
         public int row;
         public int col;
-        private bool cardChanged = true;
-        public bool CanSelect = true;
 
         private Label ressLabel = new Label();
         private Label prestigeLabel = new Label();
@@ -29,13 +27,21 @@ namespace Splendor
             this.Card = null;
         }
 
+        /// <summary>
+        /// Set the current card of this case
+        /// </summary>
+        /// <param name="card"></param>
         public void SetCard(Card card)
         {
             this.Card = card;
-            this.cardChanged = true;
+
+            this.RefreshCard();
         }
 
-        public void LoadPosition()
+        /// <summary>
+        /// Load the case
+        /// </summary>
+        public void Load()
         {
             try
             {
@@ -55,6 +61,7 @@ namespace Splendor
 
             }
 
+            //Load the controls used to display the card informations
             this.ressLabel.Location = new Point(0, 0);
             this.ressLabel.Size = new Size(70, 20);
             this.ressLabel.Click += new EventHandler(childControl_Click);
@@ -75,56 +82,60 @@ namespace Splendor
             this.Controls.Add(costTxt);
         }
 
+        /// <summary>
+        /// Click on the case
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void childControl_Click(object sender, EventArgs e)
         {
             this.OnClick(e);
         }
 
-        public override void Refresh()
+        /// <summary>
+        /// Refresh the card display
+        /// </summary>
+        public void RefreshCard()
         {
-            if (cardChanged == true) { 
-                //this.Text = this.Card != null ? this.Card.ToString() : "";
-                if (this.Card != null)
+            if (this.Card != null)
+            {
+                //Set a color for each type of ressources
+                switch (this.Card.Ress)
                 {
-                    switch (this.Card.Ress)
-                    {
-                        case Ressources.Rubis: this.ressLabel.ForeColor = Color.Red; break;
-                        case Ressources.Saphir: this.ressLabel.ForeColor = Color.Blue; break;
-                        case Ressources.Emeraude: this.ressLabel.ForeColor = Color.Green; break;
-                        case Ressources.Diamand: this.ressLabel.ForeColor = Color.SkyBlue; break;
-                        case Ressources.Onyx: this.ressLabel.ForeColor = Color.Black; break;
-
-                    }
-                    this.ressLabel.Text = this.Card.Ress.ToString();
-                    this.prestigeLabel.Text = this.Card.PrestigePt != 0 ? this.Card.PrestigePt.ToString() : "";
-                    this.costTxt.Text = "";
-                    foreach (Ressources ress in this.Card.Cost.Keys)
-                    {
-                        this.costTxt.SelectionStart = this.costTxt.TextLength;
-                        this.costTxt.SelectionLength = 0;
-                        switch (ress)
-                        {
-                            case Ressources.Rubis: this.costTxt.SelectionColor = Color.Red; break;
-                            case Ressources.Saphir: this.costTxt.SelectionColor = Color.Blue; break;
-                            case Ressources.Emeraude: this.costTxt.SelectionColor = Color.Green; break;
-                            case Ressources.Diamand: this.costTxt.SelectionColor = Color.SkyBlue; break;
-                            case Ressources.Onyx: this.costTxt.SelectionColor = Color.Black; break;
-
-                        }
-                        if (this.Card.Cost[ress] != 0)
-                            this.costTxt.AppendText(ress.ToString() + " - " + this.Card.Cost[ress] + Environment.NewLine);
-                    }
-                }
-                else
-                {
-                    this.ressLabel.Text = "";
-                    this.prestigeLabel.Text = "";
-                    this.costTxt.Text = "";
+                    case Ressources.Rubis: this.ressLabel.ForeColor = Color.Red; break;
+                    case Ressources.Saphir: this.ressLabel.ForeColor = Color.Blue; break;
+                    case Ressources.Emeraude: this.ressLabel.ForeColor = Color.Green; break;
+                    case Ressources.Diamand: this.ressLabel.ForeColor = Color.SkyBlue; break;
+                    case Ressources.Onyx: this.ressLabel.ForeColor = Color.Black; break;
                 }
 
-                cardChanged = false;
+                this.ressLabel.Text = this.Card.Ress.ToString();
+                this.prestigeLabel.Text = this.Card.PrestigePt != 0 ? this.Card.PrestigePt.ToString() : "";
+                this.costTxt.Text = "";
+                foreach (Ressources ress in this.Card.Cost.Keys)
+                {
+                    this.costTxt.SelectionStart = this.costTxt.TextLength;
+                    this.costTxt.SelectionLength = 0;
+                    switch (ress)
+                    {
+                        case Ressources.Rubis: this.costTxt.SelectionColor = Color.Red; break;
+                        case Ressources.Saphir: this.costTxt.SelectionColor = Color.Blue; break;
+                        case Ressources.Emeraude: this.costTxt.SelectionColor = Color.Green; break;
+                        case Ressources.Diamand: this.costTxt.SelectionColor = Color.SkyBlue; break;
+                        case Ressources.Onyx: this.costTxt.SelectionColor = Color.Black; break;
+
+                    }
+                    if (this.Card.Cost[ress] != 0)
+                        this.costTxt.AppendText(ress.ToString() + " - " + this.Card.Cost[ress] + Environment.NewLine);
+                }
             }
-            base.Refresh();
+            else
+            {
+                //There is no card in this case, nothing is displayed
+                this.ressLabel.Text = "";
+                this.prestigeLabel.Text = "";
+                this.costTxt.Text = "";
+            }            
         }
 
     }

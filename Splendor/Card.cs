@@ -33,11 +33,6 @@ namespace Splendor
         //public int[] Cout { get; set; } = new int[4]; //tableau : l'index correspond à l'énumération, la valeur à la ressource requise
         public Dictionary<Ressources, int> Cost { get; set; } = new Dictionary<Ressources, int>();
 
-        public Card()
-        {
-
-        }
-
         public Card(int level, Ressources? ressource, int prestige, Dictionary<Ressources, int> cost)
         {
             this.Level = level;
@@ -45,45 +40,5 @@ namespace Splendor
             this.PrestigePt = prestige;
             this.Cost = cost;
         }
-
-        /// <summary>
-        /// displays information about the card
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            string res = "";
-            
-            res = Enum.GetName(typeof(Ressources), Ress);
-            //Be careful, those \t enables to split the string when clicking on a card
-            res += " ";
-
-            if (PrestigePt != 0)
-            {
-                res += PrestigePt;
-            }
-            res += "\t";
-            res += "\r\n\r\n";
-            int boucle = 0;
-            
-            foreach (Ressources ress in Cost.Keys)
-            {
-                
-                string ressource = "";
-
-                if (Cost[ress] != 0)
-                {
-                    ressource = "    ";
-                    ressource += ress.ToString() + " ";
-                    ressource += Cost[ress] + "\r\n";
-                }
-                
-                res += ressource;
-                boucle++;
-
-            }
-            return res;
-        }
-
     }
 }
