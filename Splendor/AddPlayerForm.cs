@@ -20,7 +20,9 @@ namespace Splendor
             InitializeComponent();
 
             foreach (Player player in frmSplendor.players)
-                lstPlayer.Items.Add(player.Name);  
+                lstPlayer.Items.Add(player.Name);
+
+            txtAddPlayer.Select(); 
         }
 
         /// <summary>
@@ -34,6 +36,16 @@ namespace Splendor
                 lstPlayer.Items.Add(txtAddPlayer.Text);
                 txtAddPlayer.Clear();
             }
+        }
+
+        /// <summary>
+        /// When you press on the button, go in the method AddPlayer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdAdd_Click(object sender, EventArgs e)
+        {
+            AddPlayer(txtAddPlayer.Text);
         }
 
         /// <summary>

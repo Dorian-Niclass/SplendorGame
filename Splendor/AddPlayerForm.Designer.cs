@@ -32,6 +32,7 @@
             this.txtAddPlayer = new System.Windows.Forms.TextBox();
             this.cmdRemovePlayer = new System.Windows.Forms.Button();
             this.cmdFinish = new System.Windows.Forms.Button();
+            this.cmdAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstPlayer
@@ -47,7 +48,7 @@
             // 
             this.txtAddPlayer.Location = new System.Drawing.Point(12, 256);
             this.txtAddPlayer.Name = "txtAddPlayer";
-            this.txtAddPlayer.Size = new System.Drawing.Size(271, 20);
+            this.txtAddPlayer.Size = new System.Drawing.Size(189, 20);
             this.txtAddPlayer.TabIndex = 1;
             this.txtAddPlayer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAddPlayer_KeyDown);
             // 
@@ -72,11 +73,22 @@
             this.cmdFinish.UseVisualStyleBackColor = true;
             this.cmdFinish.Click += new System.EventHandler(this.cmdFinish_Click);
             // 
+            // cmdAdd
+            // 
+            this.cmdAdd.Location = new System.Drawing.Point(207, 255);
+            this.cmdAdd.Name = "cmdAdd";
+            this.cmdAdd.Size = new System.Drawing.Size(76, 20);
+            this.cmdAdd.TabIndex = 4;
+            this.cmdAdd.Text = "Ajouter";
+            this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
+            // 
             // AddPlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(295, 314);
+            this.Controls.Add(this.cmdAdd);
             this.Controls.Add(this.cmdFinish);
             this.Controls.Add(this.cmdRemovePlayer);
             this.Controls.Add(this.txtAddPlayer);
@@ -94,5 +106,6 @@
         private System.Windows.Forms.TextBox txtAddPlayer;
         private System.Windows.Forms.Button cmdRemovePlayer;
         private System.Windows.Forms.Button cmdFinish;
+        private System.Windows.Forms.Button cmdAdd;
     }
 }

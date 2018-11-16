@@ -40,6 +40,11 @@ namespace Splendor
         private int nbMyEmeraude;
         private int nbMyDiamand;
 
+        //used to store the number of coins selected for the current round of game
+        private int[] coins;
+
+        private int[] choosedCoins;
+
         //id of the player that is playing
         private int currentPlayerId;
         //boolean to enable us to know if the user can click on a coin or a card
@@ -83,19 +88,13 @@ namespace Splendor
                 }
             }
 
-            nbDiamand = 7;
-            nbOnyx = 7;
-            nbRubis = 7;
-            nbSaphir = 7;
-            nbEmeraude = 7;
+            coins = new int[] { 7, 7, 7, 7, 7 };
+            //no coins selected
+            choosedCoins = new int[] { 0, 0, 0, 0, 0 };
 
             lblGoldCoin.Text = "5";
-            
-            lblRubisCoin.Text = nbRubis.ToString();
-            lblSaphirCoin.Text = nbSaphir.ToString();
-            lblOnyxCoin.Text = nbOnyx.ToString();
-            lblEmeraudeCoin.Text = nbEmeraude.ToString();
-            lblDiamandCoin.Text = nbDiamand.ToString();
+
+            UpdateCoins();
 
             conn = new ConnectionDB();
 
@@ -150,6 +149,24 @@ namespace Splendor
             PutCardsOnTable();
         }
 
+        /// <summary>
+        /// Update the coins number
+        /// </summary>
+        private void UpdateCoins()
+        {
+            lblRubisCoin.Text = coins[(int)Ressources.Rubis].ToString();
+            lblSaphirCoin.Text = coins[(int)Ressources.Saphir].ToString();
+            lblOnyxCoin.Text = coins[(int)Ressources.Onyx].ToString();
+            lblEmeraudeCoin.Text = coins[(int)Ressources.Emeraude].ToString();
+            lblDiamandCoin.Text = coins[(int)Ressources.Diamand].ToString();
+
+            lblChoiceDiamand.Text = choosedCoins[(int)Ressources.Diamand].ToString();
+            lblChoiceOnyx.Text = choosedCoins[(int)Ressources.Onyx].ToString();
+            lblChoiceRubis.Text = choosedCoins[(int)Ressources.Rubis].ToString();
+            lblChoiceSaphir.Text = choosedCoins[(int)Ressources.Saphir].ToString();
+            lblChoiceEmeraude.Text = choosedCoins[(int)Ressources.Emeraude].ToString();
+        }
+
         private Stack<T> Shuffle<T>(Stack<T> stack)
         {
             Random rnd = new Random();
@@ -172,6 +189,25 @@ namespace Splendor
         {
             if (enableClicPlay)
             {
+                int nbCoin = 0;
+
+                switch (players.Count)
+                {
+                    case 2:
+                        nbCoin = 4;
+                        break;
+                    case 3:
+                        nbCoin = 5;
+                        break;
+                    case 4:
+                        nbCoin = 7;
+                        break;
+                }
+
+                coins = new int[] { nbCoin, nbCoin, nbCoin, nbCoin, nbCoin };
+
+                UpdateCoins();
+
                 cmdInsertPlayer.Enabled = false;
                 this.Width = 680;
                 this.Height = 800;
